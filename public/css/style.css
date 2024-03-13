@@ -1,0 +1,46 @@
+.input-sm,
+.form-control-personalizado-sm {
+    height: 31px;
+}
+
+.form-control-personalizado {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #a7aaab;
+    border-radius: 2px;
+    color: inherit;
+    display: block;
+    padding: 6px 6px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.panel-success {
+    border-color: #1c84c6;
+}
+.panel-success > .panel-heading {
+    background-color: #1c84c6;
+    border-color: #1c84c6;
+    color: #ffffff;
+}
+
+.panel-heading h1,
+.panel-heading h2 {
+    margin-bottom: 5px;
+}
+.panel-body {
+    padding: 15px;
+}
+
+.panel-heading {
+    color: white;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.panel-footer {
+    padding: 10px 15px;
+    border-top: 1px solid #e7eaec;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
