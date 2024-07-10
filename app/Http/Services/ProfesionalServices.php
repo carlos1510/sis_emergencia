@@ -54,6 +54,10 @@ class ProfesionalServices
         $params = (object)$params;
         return $this->repository->listarProfesionalByTipo($params);
     }
+    public function listaProfecionalesPrueba($params){
+        $params = (object)$params;
+        return $this->repository->listaProfecionalesPrueba($params);
+    }
 
 
 }

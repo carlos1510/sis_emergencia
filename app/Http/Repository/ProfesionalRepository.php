@@ -327,5 +327,5 @@ class ProfesionalRepository
         }
         return DB::select($sql);
     }
-
+    
 }

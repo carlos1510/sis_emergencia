@@ -1,0 +1,1472 @@
+{
+    "año": 2024,
+    "mes": 1,
+    "dia": 20,
+    "data": [
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },
+        {
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },{
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },{
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },{
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },{
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },{
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        },{
+            "dni": "45824458",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia Ruiz Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":25,
+            "edad_tiempo":"A",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"hol",
+                "pab":".----"
+            }],
+            "peso":"43 Kg",
+            "talla":"142 cm",
+            "Hemoglobina":"",
+            "estable":"C",
+            "servicio":"C",
+            "items": [{
+                "codigo_cie": "S017",
+                "descripccion": [{
+                    "diagnostico1":"Herida Multiple",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "P",
+                "valor_lab":"1"
+            }]
+        },
+        {
+            "dni": "62234153",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"ucayali",
+            "centro_poblado":"D.G",
+            "nombre":"Nimia  Gomez",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"M",
+            "sexo":"M",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"",
+            "estable":"N",
+            "servicio":"N",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "D",
+                "valor_lab":"2"
+            }]
+        },
+        {
+            "dni": "74650097",
+            "historia_clinica":"G-61",
+            "gestante_puerpera":"...",
+            "financ":"2",
+            "etnia":"6",
+            "distrito_procedencia":"junin",
+            "centro_poblado":"D.G",
+            "nombre":"Angela Ruiz Pinedo",
+            "fecha_Nac":"08/10/1991",
+            "fecha_hb":"12/01/2024",
+            "fecha_regla":"25/02/2024",
+            "edad":18,
+            "edad_tiempo":"D",
+            "sexo":"F",
+            "perimetro":[{
+                "pc":"----",
+                "pab":"----"
+            }],
+            "peso":"51 Kg",
+            "talla":"150 cm",
+            "Hemoglobina":"---",
+            "estable":"R",
+            "servicio":"R",
+            "items": [{
+                "codigo_cie": "J408",
+                "descripccion": [{
+                    "diagnostico1":"bronquites",
+                    "diagnostico2":"...",
+                    "diagnostico3":"..."
+                }],
+                "tipo_diagnostico": "R",
+                "valor_lab":"3"
+            }]
+        }
+        
+    ]
+}

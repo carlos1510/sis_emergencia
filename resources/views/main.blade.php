@@ -12,7 +12,7 @@
             custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['template/assets/css/fonts.css']},
             active: function() {
                 sessionStorage.fonts = true;
-            }
+            }       
         });
     </script>
 
@@ -179,16 +179,17 @@
                             </a>
                             <div id="planin" @if(Session::get('menu_primario')=='reportes')class="collapse show" @else class="collapse" @endif>
                                 <ul class="nav nav-collapse">
-                                    <!--<li @if(Session::get('menu_secundario')=='registro_diario') class="active" @else class="" @endif>
+                                    <li @if(Session::get('menu_secundario')=='registro_diario') class="active" @else class="" @endif>
                                         <a href="{{ url('registro_diario') }}">
                                             <span class="sub-item">Registro Diario</span>
                                         </a>
-                                    </li>-->
+                                    </li>
                                     <li @if(Session::get('menu_secundario')=='nominal_emergencia') class="active" @else class="" @endif>
                                         <a href="{{ url('nominal_emergencia') }}">
                                             <span class="sub-item">Nominal Emergencia</span>
                                         </a>
                                     </li>
+                                    
                                 </ul>
                             </div>
                         </li>

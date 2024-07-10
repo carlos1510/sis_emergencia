@@ -13,7 +13,7 @@ app.controller('reporteNominalEmergenciaController', function ($scope,$timeout, 
             $scope.lista_establecimientos = data;
         });
     }
-
+    
     $scope.inicio = function () {
         var fecha = new Date();
         $scope.filtro.fecha_inicio = ('0'+fecha.getDate()).toString().substr(-2)+'/'+('0'+(fecha.getMonth()+1)).toString().substr(-2)+'/'+fecha.getFullYear();

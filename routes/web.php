@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ActividadesHisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('profesional/guardarUsuario', 'App\Http\Controllers\ProfesionalController@guardarUsuario');
     Route::post('profesional/buscarProfesionalMedico', 'App\Http\Controllers\ProfesionalController@buscarProfesionalMedico');
     Route::post('profesional/buscarProfesionalNoMedico', 'App\Http\Controllers\ProfesionalController@buscarProfesionalNoMedico');
+    Route::post('profesional/listarProfesionalByTipo', 'App\Http\Controllers\ProfesionalController@listarProfesionalByTipo');
+    Route::post('profesional/listaProfecionalesPrueba', 'App\Http\Controllers\ProfesionalController@listaProfecionalesPrueba');
+    
 
     //emergencia
     Route::post('emergencia/guardarUpdateEmergencia', 'App\Http\Controllers\EmergenciaController@guardarUpdateEmergencia');
@@ -77,6 +81,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('accesorio/getListaMedicamentos', 'App\Http\Controllers\AccesorioController@getListaMedicamentos');
     Route::post('accesorio/getIPRESSAtencion', 'App\Http\Controllers\AccesorioController@getIPRESSAtencion');
     Route::post('accesorio/getReporteInicio', 'App\Http\Controllers\AccesorioController@getReporteInicio');
+
+    Route::post('actividadeshis/listarActividadesHis', [ActividadesHisController::class, 'listarActividadesHis']);
+    Route::post('actividadeshis/imprimirHis', [ActividadesHisController::class, 'imprimirHis']);
+    
+
 
     Route::post('reporte/reporteNominalEmergencia', 'App\Http\Controllers\ReportesController@reporteNominalEmergencia');
 

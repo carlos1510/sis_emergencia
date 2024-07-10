@@ -63,5 +63,11 @@ class ProfesionalController extends Controller
         $params = json_decode($content);
         return new JsonResponse($this->service->listarProfesionalByTipo($params));
     }
+    public function listaProfecionalesPrueba(Request $request){
+        $request->isXmlHttpRequest();
+        $content = $request->getContent();
+        $params = json_decode($content);
+        return new JsonResponse($this->service->listaProfecionalesPrueba($params));
+    }
 
 }

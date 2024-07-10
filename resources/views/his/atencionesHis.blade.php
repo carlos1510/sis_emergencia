@@ -32,7 +32,7 @@
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Lista de Actividades HIS a Imprimir</h4>
-                        <button class="btn btn-success btn-round ml-auto btn-sm" ng-click="imprimirHis();">
+                        <button class="btn btn-success btn-round ml-auto btn-sm" ng-click="prepararImpresion();">
                             <i class="fa fa-print"></i>
                             Imprimir
                         </button>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div style="padding-top: 37px !important;">
-                                    <button type="button" class="btn btn-sm btn-block btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <button type="button" class="btn btn-sm btn-block btn-primary" ng-click="buscar();"><i class="fa fa-search" ></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">N°</th>
                                 <th scope="col">HC</th>
                                 <th scope="col">Nro. Doc.</th>
                                 <th scope="col">Paciente</th>

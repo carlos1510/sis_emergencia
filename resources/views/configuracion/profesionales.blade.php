@@ -549,7 +549,7 @@
                             @if(Session::get('idnivel') == 1 || Session::get('idnivel') == 2 || Session::get('idnivel') == 3 || Session::get('idnivel') == 4)
                                 <div class="col-lg-2">
                                     <div style="padding-top: 35px !important;">
-                                        <button type="button" class="btn btn-sm btn-primary btn-block" ng-click="listar()"><i class="fa fa-search"></i> Buscar</button>
+                                        <button type="button" class="btn btn-sm btn-primary btn-block" ng-click="listar();"><i class="fa fa-search"></i> Buscar</button>
                                     </div>
                                 </div>
                             @endif

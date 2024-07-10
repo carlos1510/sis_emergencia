@@ -37,15 +37,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="card-title">Lista de Reporte Registro Díario para HIS</h4>
-                    </div>
+                        <h4 class="card-title">Lista de Reporte Registro Díario para HIS</h4>                   
+                    </div>               
                 </div>
+                
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Tipo de Servicio:</label>
-                                <div>
+                                <div> 
                                     <label class="form-radio-label">
                                         <input class="form-radio-input" type="radio" value="EMERGENCIA" name="tipo_servicio" ng-model="filtro.tipo_servicio">
                                         <span class="form-radio-sign">EMERGENCIA</span>
@@ -53,89 +54,126 @@
                                     <label class="form-radio-label" style="display: none">
                                         <input class="form-radio-input" type="radio" value="HOSPITALIZACION" name="tipo_servicio" ng-model="filtro.tipo_servicio" >
                                         <span class="form-radio-sign">HOSPITALIZACION</span>
-                                    </label>
-                                </div>
+                                    </label> 
+                                </div>   
                             </div>
+                                              
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Tipo Profesional:</label>
-                                <div>
-                                    <label class="form-radio-label">
-                                        <input class="form-radio-input" type="radio" value="MEDICO" name="tipo_profesional" ng-model="filtro.tipo_profesional">
-                                        <span class="form-radio-sign">Personal Médico Atención</span>
-                                    </label>
-                                    <label class="form-radio-label">
-                                        <input class="form-radio-input" type="radio" value="ENFERMERO_OBSTETRIZ" name="tratamiento_adicional" ng-model="filtro.tipo_profesional" >
-                                        <span class="form-radio-sign">Personal Enfermero/Obstetriz Registro</span>
-                                    </label>
-                                </div>
+                        
+                        
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Tipo Profesional:</label>
+                            <div>
+                                
+                                <label class="form-radio-label">
+                                    <input class="form-radio-input" type="radio" value="MEDICO" name="tipo_profesional" ng-model="filtro.tipo_profesional">
+                                    <span class="form-radio-sign">Personal Médico Atención</span>
+                                </label>
+                                <label class="form-radio-label">
+                                    <input class="form-radio-input" type="radio" value="ENFERMERO_OBSTETRIZ" name="tipo_profesional" ng-model="filtro.tipo_profesional" >
+                                    <span class="form-radio-sign">Personal No Medico</span>
+                                </label>
                             </div>
+                            
                         </div>
+                    </div>
+                        
+                        
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label>Profesional:</label>
-                                <select class="form-control form-control-sm" id="cmbProfesionalBuscar" style="width: 100% !important;" ng-model="filtro.id_profesional" >
-                                    <option value="">---</option>
-                                    <option ng-repeat="item in lista_profesional" value="@{{ item.idprofesional }}">@{{ item.nombres }} @{{ item.apellido_paterno }} @{{ item.apellido_materno }}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label>Fecha De:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-prepend">
-                                        <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <input class="form-control form-control-sm" type="text" id="fecha_iniciotxt" autocomplete="off" placeholder="dd/mm/yyyy" ng-model="filtro.fecha_inicio" name="fecha_inicio" readonly>
+                       
+                            <div class="col-lg-2">                            
+                                <div class="form-group">
+                                    <label>Establecimiento: <span class="text-danger">*</span></label>
+                                    <select class="form-control form-control-sm" id="cmbCod_2000Buscar" style="width: 100% !important;"   ng-model="filtro.cod_2000" name="cod_2000" ng-change="listaprofesionales()">
+                                        <option value="">---</option>
+                                        <option  ng-repeat="item in lista_establecimientoshis" value="@{{ item.codigo_unico }}">@{{ item.nombre_establecimiento }}</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label>Fecha Hasta:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-prepend">
-                                        <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <input class="form-control form-control-sm" type="text" id="fecha_finaltxt" autocomplete="off" placeholder="dd/mm/yyyy" ng-model="filtro.fecha_final" name="fecha_final" readonly>
+                            <div class="col-lg-2 col-sm-12">
+                                <div class="form-group">
+                                    <label>Profesional:</label>
+                                    <select class="form-control form-control-sm" id="cmbProfesionalBuscar" style="width: 100% !important;"   ng-model="filtro.idprofesional" name="idprofesional" >
+                                        <option value="">---</option>
+                                        <option  ng-repeat="item in lista_profesionales" value="@{{ item.idprofesional}}">@{{item.apellido_paterno_personal}} @{{item.apellido_materno_personal}} @{{item.nombres_personal}}</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div style="padding-top: 37px !important;">
-                                <button type="button" class="btn btn-sm btn-block btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>Fecha De:</label>
+                                    <div class="input-group date"  >
+                                        <div class="input-group-prepend">
+                                            <span  class="input-group-text" ><i class="fa fa-calendar"  ></i></span>
+                                        </div>
+                                        <input class="form-control form-control-sm" type="text" id="fecha_iniciotxt" autocomplete="off" placeholder="dd/mm/yyyy" ng-change="getDateInicio();" ng-model="filtro.fecha_inicio" name="fecha_inicio"  readonly>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>Fecha Hasta:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-prepend">
+                                            <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input class="form-control form-control-sm" type="text" id="fecha_finaltxt" autocomplete="off" placeholder="dd/mm/yyyy" ng-change="fecha_final();" ng-model="filtro.fecha_final" name="fecha_final" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div style="padding-top: 37px !important;">
+                                    <button type="button" class="btn btn-sm btn-block btn-primary" ng-click="buscar();" ng-disabled="miFormulario.$invalid" ><i class="fa fa-search"></i> Buscar</button>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-2">
+                                <div style="padding-top: 37px ;">
+                                    <button class="btn btn-success btn-block  btn-sm" ng-click="prepararImpresion();">
+                                        <i class="fa fa-print"></i>
+                                        Imprimir
+                                    </button>
+                                </div>   
+                            </div>
+                            
+                        
                     </div>
                 </div>
-                <div class="card-footer no-padding" id="lista_bloqueoDiv">
-                    <div class="table-responsive" id="lista_bloqueo2Div">
-                        <table class="table table-bordered">
+                <div class="card-footer no-padding" id="lista_bloqueoDiv"  style="padding: 0px !important;">
+                    <div class="table-responsive" id="lista_bloqueo2Div" style="padding-top: 15px !important;">
+                        <table  class="table table-bordered">
                             <thead>
                             <tr>
+                                <th>item</th>
                                 <th scope="col">Nro. Doc.</th>
                                 <th scope="col">Paciente</th>
                                 <th scope="col">HC</th>
                                 <th scope="col">Fecha de Atención</th>
+                                <th scope="col">Estado</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="item in personas">
+                            <tr ng-repeat="item in lista">
+                                <td>@{{$index+1}}</td>
                                 <td>@{{ item.nro_documento }}</td>
-                                <td>@{{ item.apellido_paterno }} @{{ item.apellido_materno }} @{{ item.nombres }}</td>
-                                <td>@{{ item.sexo }}</td>
-                                <td>@{{ item.sexo }}</td>
+                                
+                                <td>@{{ item.nombres_paciente }} </td>
+                                <td>@{{ item.hc }}</td>
+                                <td>@{{ item.fecha_atencion }}</td>
+                                
+                                
+                                <td>@{{ item.impresion }}</td>
                             </tr>
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
 @endsection
 

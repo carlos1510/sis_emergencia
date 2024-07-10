@@ -91,31 +91,17 @@ app.factory('profesionalService', function($http){
         buscarProfesionalNoMedico: function ($params) {
             return $http.post("profesional/buscarProfesionalNoMedico", $params)
         },
+        listarProfesionalByTipo: function ($params){
+            return $http.post("profesional/listarProfesionalByTipo", $params)
+        },
+        listaProfecionalesPrueba: function ($params){
+            return $http.post("profesional/listaProfecionalesPrueba", $params)
+        }
     }
 });
 
 app.factory('accesorioService', function($http){
     return {
-        pruebaConexionHisMinsa: function ($params) {
-            //return $http.get("https://websalud.minsa.gob.pe/appInmunizacion/moduloActividad.hisminsa?u=72627303");
-            /*return $http({
-                url: "https://websalud.minsa.gob.pe/appInmunizacion/moduloActividad.hisminsa",
-                method: "GET",
-                params: {u: "72627303"},
-                contentType: "text/xml;charset=UTF-8",
-                userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-                accessControlAllowOrigin: ""
-            });*/
-            //return $http.get("https://api.dniruc.com/api/search/dni/46902128/AJi4QfFULABGamPKe10x_qkZ0GEKjcbIGoG59lkkXUgu6DQcrzSSqwRqhsqj81IAn-J6ghh8idA");
-            return $http.get("https://www.facturacionelectronica.us/facturacion/controller/ws_consulta_rucdni_v2.php?documento=DNI&usuario=10447915125&password=985511933&nro_documento=40688830");
-            //return $http.get("https://dniruc.apisperu.com/api/v1/dni/75741260?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNjdmMyMDIwMDVAZ21haWwuY29tIn0._c8_lM_LIID-KQlHWSKBAVMypp_MxiNlTt2eWlmhO3o")
-        },
-        pruebaConsultaReniecHisMinsa: function ($params) {
-            return $http.get("https://websalud.minsa.gob.pe/appInmunizacion/view/registros/vacunados/Pacientes?accion=WS_CONSULTARENIEC&dni=46902128&tipodoc=1");
-        },
-        consultarDNIRUCReniec: function ($params) {
-            return $http.get("https://dniruc.apisperu.com/api/v1/dni/" + $params.dni + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNjdmMyMDIwMDVAZ21haWwuY29tIn0._c8_lM_LIID-KQlHWSKBAVMypp_MxiNlTt2eWlmhO3o")
-        },
         listarProfesion: function ($params) {
             return $http.post("accesorio/listarProfesion", $params)
         },
@@ -164,50 +150,23 @@ app.factory('accesorioService', function($http){
     }
 });
 
+app.factory('actividadesHisService',function($http){
+    return{
+        listarActividadesHis: function ($params) {
+            return $http.post('actividadeshis/listarActividadesHis', $params)
+        },
+        imprimirHis: function($params){
+            return $http.post('actividadeshis/imprimirHis',$params)
+        }
+    }
+});
+
 app.factory('reportesService', function($http){
     return {
         iniciar: function ($params) {
             return $http.post("iniciarSesion", $params)
         },
-        getListarIndicador1: function ($params) {
-            return $http.post("reporte/getListarIndicador1", $params)
-        },
-        getListarIndicador2: function ($params) {
-            return $http.post("reporte/getListarIndicador2", $params)
-        },
-        getListarIndicador3: function ($params) {
-            return $http.post("reporte/getListarIndicador3", $params)
-        },
-        getListarIndicador4: function ($params) {
-            return $http.post("reporte/getListarIndicador4", $params)
-        },
-        getListarIndicador5: function ($params) {
-            return $http.post("reporte/getListarIndicador5", $params)
-        },
-        tramaB1: function ($params) {
-            return $http.post("reporte/tramaB1", $params)
-        },
-        tramaB2: function ($params) {
-            return $http.post("reporte/tramaB2", $params)
-        },
-        tramaC1: function ($params) {
-            return $http.post("reporte/tramaC1", $params)
-        },
-        tramaC2: function ($params) {
-            return $http.post("reporte/tramaC2", $params)
-        },
-        tramaD1: function ($params) {
-            return $http.post("reporte/tramaD1", $params)
-        },
-        tramaD2: function ($params) {
-            return $http.post("reporte/tramaD2", $params)
-        },
-        tramaG: function ($params) {
-            return $http.post("reporte/tramaG", $params)
-        },
-        tramaA: function ($params) {
-            return $http.post("reporte/tramaA", $params)
-        },
+        
         reporteVisitaProfam: function ($params) {
             return $http.post("reporte/reporteVisitaProfam", $params)
         },
@@ -225,14 +184,6 @@ app.factory('reportesService', function($http){
         },
         indicadorVacunaCompleta: function ($params) {
             return $http.post("reporte/indicadorVacunaCompleta", $params)
-        },
-        reporteTurnoHora: function ($params) {
-            return $http.post("reporte/reporteTurnoHora", $params)
-        },reporteAtencionesProfesionales: function ($params) {
-            return $http.post("reporte/reporteAtencionesProfesionales", $params)
-        },
-        reporteMC05: function ($params) {
-            return $http.post("reporte/reporteMC05", $params)
         },
     }
 });
