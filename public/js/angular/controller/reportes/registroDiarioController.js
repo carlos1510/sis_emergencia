@@ -571,7 +571,7 @@ app.controller('registroDiarioController', function ($scope,$http,$timeout,acces
             
         }
         
-        $scope.pdf.save('imprimir.pdf');
+        //$scope.pdf.save('imprimir.pdf');
         
 
     }
