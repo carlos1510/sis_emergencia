@@ -8,7 +8,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
 
     $scope.anios = [];
     $scope.meses = [];
-    $scope.emergencia = {detalle_medicamento:[], detalle_his: []};
+    $scope.emergencia = {detalle_medicamento:[], detalle_his: [], detalle_his_nm: []};
     //objeto de busqueda de la persona
     $scope.busqueda_profesional = {};
     $scope.busqueda_profesional_nomedico = {};
@@ -31,6 +31,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
     $scope.lista_profesionales = [];
     $scope.lista_profesionales_nomedicos = [];
     $scope.ups_emergencia = [];
+    $scope.ups_emergencia_proc = [];
     $scope.ups_hospitalizacion = [];
     $scope.lista = [];
     $scope.lista_medicamentos = [];
@@ -143,6 +144,10 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
         $scope.ups_hospitalizacion = data;
     });
 
+    accesorioService.listaUpsByEmergenciaHospitalizacion({servicio_descripcion:'PROCEDIMIENTO'}).success(function (data) {
+        $scope.ups_emergencia_proc = data;
+    })
+
     $scope.regresar = function () {
         $scope.estado_registro = 0;
     }
@@ -183,6 +188,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
         $scope.personas = [];
         $scope.emergencia = {};
         $scope.emergencia.detalle_his = [];
+        $scope.emergencia.detalle_his_nm = [];
         $scope.emergencia_tratamiento = {};
     }
 
@@ -264,16 +270,6 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
                             }
                         }
                     }else {
-                        //mensaje de error
-                        /*swal("Error!", "Falló Interno por problemas de conectividad!", {
-                            icon : "error",
-                            buttons: {
-                                confirm: {
-                                    text : 'Entendido',
-                                    className : 'btn btn-danger'
-                                }
-                            },
-                        });*/
                         swal({
                             title: 'Desea Registrar la Emergencia?',
                             text: "No se Encontraron Registros con el numero de documento "+$scope.buscar.nro_documento,
@@ -367,6 +363,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
             $scope.emergencia.hora_atencion = fecha.getHours() + ":" + fecha.getMinutes();
             $scope.emergencia.detalle_medicamento = [];
             $scope.emergencia.detalle_his = [];
+            $scope.emergencia.detalle_his_nm = [];
             $('#fecha_salidatxt').datepicker('setStartDate', new Date());
             //Persona no registrado
             $timeout(function () {
@@ -438,6 +435,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
                 $scope.emergencia.hora_atencion = ('0' + fecha.getHours()).toString().substr(-2) + ":" + ('0' + fecha.getMinutes()).toString().substr(-2);
                 $scope.emergencia.detalle_medicamento = [];
                 $scope.emergencia.detalle_his = [];
+                $scope.emergencia.detalle_his_nm = [];
                 $scope.emergencia.condicion_establecimiento = 'C';
                 $scope.emergencia.condicion_servicio = 'C';
                 $('#fecha_salidatxt').datepicker('setStartDate', new Date());
@@ -506,6 +504,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
                         }, 0);
                         $scope.emergencia.detalle_medicamento = [];
                         $scope.emergencia.detalle_his = [];
+                        $scope.emergencia.detalle_his_nm = [];
                         $scope.emergencia.tratamiento_adicional = 'NO';
                         $scope.emergencia.condicion_establecimiento = 'C';
                         $scope.emergencia.condicion_servicio = 'C';
@@ -656,6 +655,7 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
         $scope.estado_registro = 0;
         $scope.emergencia = {};
         $scope.emergencia.detalle_his = [];
+        $scope.emergencia.detalle_his_nm = [];
     }
 
     $scope.calcularEdadFechaNacimiento = function () {
@@ -1163,6 +1163,20 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
         }
         $scope.busqueda_texto_emerg = '';
         $("#seleccionarUpsEmergenciaModal").modal('hide');
+    }
+
+    $scope.seleccionUpsEmergenciaProc = function (item) {
+        if ($scope.estado_accion == 1){
+            $scope.emergencia.idups_procedimiento = item.codups;
+            $scope.emergencia.descripcion_ups_proc = item.desupsesp;
+        }else {
+            if ($scope.estado_accion == 2){
+                $scope.emergencia_tratamiento.idups_procedimiento = item.codups;
+                $scope.emergencia_tratamiento.descripcion_ups_proc = item.desupsesp;
+            }
+        }
+        $scope.busqueda_texto_ups_proc = '';
+        $("#seleccionarUpsProcedimientoModal").modal('hide');
     }
 
     $scope.buscarPersonaAcompanante = function () {
@@ -1866,19 +1880,39 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
                 }
             }
         }
-        if ($scope.emergencia.detalle_his.length > 0){
+        //detalle_his_nm
+        // Para los diagnosticos de los medicos
+        if(index < 5){
+            if ($scope.emergencia.detalle_his.length > 0){
+                var encontrado = false;
+                for (var i = 0; i < $scope.emergencia.detalle_his.length; i++){
+                    if ($scope.emergencia.detalle_his[i].codigo_cie == item.codigo_cie){
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (!encontrado){
+                    $scope.emergencia.detalle_his.push({id:null, codigo_cie: item.codigo_cie, descripcion_cie: item.descripcion_cie, tipo_diagnostico: tipo_diagnostico, lab1: lab1, lab2: null, lab3: null, item: index});
+                }
+            }else {
+                $scope.emergencia.detalle_his.push({id:null, codigo_cie: item.codigo_cie, descripcion_cie: item.descripcion_cie, tipo_diagnostico: tipo_diagnostico, lab1: lab1, lab2: null, lab3: null, item: index});
+            }
+        }
+
+        // Para los diagnosticos repetitivos en personal no medicos
+        if ($scope.emergencia.detalle_his_nm.length > 0){
             var encontrado = false;
-            for (var i = 0; i < $scope.emergencia.detalle_his.length; i++){
-                if ($scope.emergencia.detalle_his[i].codigo_cie == item.codigo_cie){
+            for (var i = 0; i < $scope.emergencia.detalle_his_nm.length; i++){
+                if ($scope.emergencia.detalle_his_nm[i].codigo_cie == item.codigo_cie){
                     encontrado = true;
                     break;
                 }
             }
             if (!encontrado){
-                $scope.emergencia.detalle_his.push({id:null, codigo_cie: item.codigo_cie, descripcion_cie: item.descripcion_cie, tipo_diagnostico: tipo_diagnostico, lab1: lab1, lab2: null, lab3: null, item: index});
+                $scope.emergencia.detalle_his_nm.push({id:null, codigo_cie: item.codigo_cie, descripcion_cie: item.descripcion_cie, tipo_diagnostico: index<5?'R':tipo_diagnostico, lab1: lab1, lab2: null, lab3: null, item: index});
             }
         }else {
-            $scope.emergencia.detalle_his.push({id:null, codigo_cie: item.codigo_cie, descripcion_cie: item.descripcion_cie, tipo_diagnostico: tipo_diagnostico, lab1: lab1, lab2: null, lab3: null, item: index});
+            $scope.emergencia.detalle_his_nm.push({id:null, codigo_cie: item.codigo_cie, descripcion_cie: item.descripcion_cie, tipo_diagnostico: index<5?'R':tipo_diagnostico, lab1: lab1, lab2: null, lab3: null, item: index});
         }
     }
 
@@ -1901,10 +1935,21 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
                 }
             }
         }
-        if ($scope.emergencia.detalle_his.length > 0){
-            for (var i = 0; i < $scope.emergencia.detalle_his.length; i++){
-                if ($scope.emergencia.detalle_his[i].item == index){
-                    $scope.emergencia.detalle_his[i].tipo_diagnostico = tipo_diagnostico;
+        if(index < 5){
+            if ($scope.emergencia.detalle_his.length > 0){
+                for (var i = 0; i < $scope.emergencia.detalle_his.length; i++){
+                    if ($scope.emergencia.detalle_his[i].item == index){
+                        $scope.emergencia.detalle_his[i].tipo_diagnostico = tipo_diagnostico;
+                        break;
+                    }
+                }
+            }
+        }
+        // No Médicos
+        if ($scope.emergencia.detalle_his_nm.length > 0){
+            for (var i = 0; i < $scope.emergencia.detalle_his_nm.length; i++){
+                if ($scope.emergencia.detalle_his_nm[i].item == index){
+                    $scope.emergencia.detalle_his_nm[i].tipo_diagnostico = index<5?'R':tipo_diagnostico;
                     break;
                 }
             }
@@ -1915,8 +1960,16 @@ app.controller('emergenciaController', function ($scope, $timeout, DTOptionsBuil
         if ($scope.emergencia.detalle_his.length > 0){
             for (var i = 0; i < $scope.emergencia.detalle_his.length; i++){
                 if ($scope.emergencia.detalle_his[i].item == index){
-                    console.log(i);
                     $scope.emergencia.detalle_his.splice(i, 1);
+                }
+            }
+        }
+
+        // No medico
+        if ($scope.emergencia.detalle_his_nm.length > 0){
+            for (var i = 0; i < $scope.emergencia.detalle_his_nm.length; i++){
+                if ($scope.emergencia.detalle_his_nm[i].item == index){
+                    $scope.emergencia.detalle_his_nm.splice(i, 1);
                 }
             }
         }

@@ -23,6 +23,15 @@
     color: #ffffff;
 }
 
+.panel-danger {
+    border-color: #f3545d ;
+}
+.panel-danger > .panel-heading {
+    background-color: #f3545d ;
+    border-color: #f3545d ;
+    color: #ffffff;
+}
+
 .panel-heading h1,
 .panel-heading h2 {
     margin-bottom: 5px;

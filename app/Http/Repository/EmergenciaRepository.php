@@ -13,6 +13,7 @@ use League\Flysystem\Exception;
 use Illuminate\Support\Facades\Session;
 
 use App\Http\Util\Util;
+use App\Models\Emergencia;
 
 date_default_timezone_set('America/Lima');
 
@@ -199,103 +200,98 @@ class EmergenciaRepository
                     ));
 
                     //registramos la emergencia
-                    $sql = "INSERT INTO emergencia (cod_2000, fecha_atencion, hora_atencion, hc, idfinanciador, edad, tipo_edad, idpersona, tipo_doc_acomp, nro_doc_acomp, nombre_acomp, telefono_acomp, idmotivo_atencion, motivo_atencion_descripcion, idubigeo_lugar_ocurrencia, idups, idcondicion_salida,
-                      fecha_salida, hora_salida, iddestino, cod_2000_referencia, idups_hospitalizacion, tipo_profesional_atencion, idprofesional, nro_doc_profecional, nombre_profesional, dx1_si_no, codigo_dx1, descripcion_dx1, tipo_diagnostico_dx1, dx2_si_no, codigo_dx2, descripcion_dx2,
-                      tipo_diagnostico_dx2, dx3_si_no, codigo_dx3, descripcion_dx3, tipo_diagnostico_dx3, dx4_si_no, codigo_dx4, descripcion_dx4, tipo_diagnostico_dx4, proc1_si_no, codigo_proc_1, descripcion_proc_1, proc2_si_no, codigo_proc_2, descripcion_proc_2,
-                      proc3_si_no, codigo_proc_3, descripcion_proc_3, proc4_si_no, codigo_proc_4, descripcion_proc_4, tipo_actividad, idusuario_registro, fecha_registro, idusuario_modificacion, fecha_modificacion, presion_sistolica, presion_diastolica, presion_arterial_media,
-                      saturacion_oxigeno, frecuencia_cardiaca, frecuencia_respiratoria, temperatura, area_atencion, tratamiento_adicional, nro_dia_tratamiento, estado, tipo_profesional_procedimiento, idprofesional_no_medico, nro_doc_profecional_no_medico, nombre_profesional_no_medico)
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-                    DB::insert($sql, [
-                        isset($params->cod_2000)?($params->cod_2000!=""?$params->cod_2000:null):null,
-                        isset($params->fecha_atencion)?($params->fecha_atencion!=""?Util::convertirStringFecha($params->fecha_atencion, false):null):null,
-                        isset($params->hora_atencion)?($params->hora_atencion!=""?$params->hora_atencion:null):null,
-                        isset($params->hc)?($params->hc!=""?$params->hc:null):null,
-                        isset($params->idfinanciador)?($params->idfinanciador!=""?$params->idfinanciador:null):null,
-                        isset($params->edad)?($params->edad!=""?$params->edad:null):null,
-                        isset($params->tipo_edad)?($params->tipo_edad!=""?strtoupper($params->tipo_edad):null):null,
-                        $params->idpersona,
-                        isset($params->tipo_doc_acomp)?($params->tipo_doc_acomp!=""?$params->tipo_doc_acomp:null):null,
-                        isset($params->nro_doc_acomp)?($params->nro_doc_acomp!=""?$params->nro_doc_acomp:null):null,
-                        isset($params->nombre_acomp)?($params->nombre_acomp!=""?strtoupper($params->nombre_acomp):null):null,
-                        isset($params->telefono_acomp)?($params->telefono_acomp!=""?$params->telefono_acomp:null):null,
-                        isset($params->idmotivo_atencion)?($params->idmotivo_atencion!=""?$params->idmotivo_atencion:null):null,
-                        isset($params->motivo_atencion_descripcion)?($params->motivo_atencion_descripcion!=""?$params->motivo_atencion_descripcion:null):null,
-                        isset($params->idubigeo_lugar_ocurrencia)?($params->idubigeo_lugar_ocurrencia!=""?$params->idubigeo_lugar_ocurrencia:null):null,
-                        isset($params->idups)?($params->idups!=""?$params->idups:null):null,
-                        isset($params->idcondicion_salida)?($params->idcondicion_salida!=""?$params->idcondicion_salida:null):null,
-                        isset($params->fecha_salida)?($params->fecha_salida!=""?Util::convertirStringFecha($params->fecha_salida, false):null):null,
-                        isset($params->hora_salida)?($params->hora_salida!=""?$params->hora_salida:null):null,
-                        isset($params->iddestino)?($params->iddestino!=""?$params->iddestino:null):null,
-                        isset($params->cod_2000_referencia)?($params->cod_2000_referencia!=""?$params->cod_2000_referencia:null):null,
-                        isset($params->idups_hospitalizacion)?($params->idups_hospitalizacion!=""?$params->idups_hospitalizacion:null):null,
-                        isset($params->tipo_profesional_atencion)?($params->tipo_profesional_atencion!=""?$params->tipo_profesional_atencion:null):null,
-                        isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null,
-                        isset($params->nro_doc_profecional)?($params->nro_doc_profecional!=""?$params->nro_doc_profecional:null):null,
-                        isset($params->nombre_profesional)?($params->nombre_profesional!=""?strtoupper($params->nombre_profesional):null):null,
-                        isset($params->dx1_si_no)?($params->dx1_si_no!=""?$params->dx1_si_no:null):null,
-                        isset($params->codigo_dx1)?($params->codigo_dx1!=""?strtoupper($params->codigo_dx1):null):null,
-                        isset($params->descripcion_dx1)?($params->descripcion_dx1!=""?strtoupper($params->descripcion_dx1):null):null,
-                        isset($params->tipo_diagnostico_dx1)?($params->tipo_diagnostico_dx1!=""?strtoupper($params->tipo_diagnostico_dx1):null):null,
-                        isset($params->dx2_si_no)?($params->dx2_si_no!=""?$params->dx2_si_no:null):null,
-                        isset($params->codigo_dx2)?($params->codigo_dx2!=""?strtoupper($params->codigo_dx2):null):null,
-                        isset($params->descripcion_dx2)?($params->descripcion_dx2!=""?strtoupper($params->descripcion_dx2):null):null,
-                        isset($params->tipo_diagnostico_dx2)?($params->tipo_diagnostico_dx2!=""?strtoupper($params->tipo_diagnostico_dx2):null):null,
-                        isset($params->dx3_si_no)?($params->dx3_si_no!=""?$params->dx3_si_no:null):null,
-                        isset($params->codigo_dx3)?($params->codigo_dx3!=""?strtoupper($params->codigo_dx3):null):null,
-                        isset($params->descripcion_dx3)?($params->descripcion_dx3!=""?strtoupper($params->descripcion_dx3):null):null,
-                        isset($params->tipo_diagnostico_dx3)?($params->tipo_diagnostico_dx3!=""?strtoupper($params->tipo_diagnostico_dx3):null):null,
-                        isset($params->dx4_si_no)?($params->dx4_si_no!=""?$params->dx4_si_no:null):null,
-                        isset($params->codigo_dx4)?($params->codigo_dx4!=""?strtoupper($params->codigo_dx4):null):null,
-                        isset($params->descripcion_dx4)?($params->descripcion_dx4!=""?strtoupper($params->descripcion_dx4):null):null,
-                        isset($params->tipo_diagnostico_dx4)?($params->tipo_diagnostico_dx4!=""?strtoupper($params->tipo_diagnostico_dx4):null):null,
-                        isset($params->proc1_si_no)?($params->proc1_si_no!=""?$params->proc1_si_no:null):null,
-                        isset($params->codigo_proc_1)?($params->codigo_proc_1!=""?strtoupper($params->codigo_proc_1):null):null,
-                        isset($params->descripcion_proc_1)?($params->descripcion_proc_1!=""?strtoupper($params->descripcion_proc_1):null):null,
-                        isset($params->proc2_si_no)?($params->proc2_si_no!=""?$params->proc2_si_no:null):null,
-                        isset($params->codigo_proc_2)?($params->codigo_proc_2!=""?strtoupper($params->codigo_proc_2):null):null,
-                        isset($params->descripcion_proc_2)?($params->descripcion_proc_2!=""?strtoupper($params->descripcion_proc_2):null):null,
-                        isset($params->proc3_si_no)?($params->proc3_si_no!=""?$params->proc3_si_no:null):null,
-                        isset($params->codigo_proc_3)?($params->codigo_proc_3!=""?strtoupper($params->codigo_proc_3):null):null,
-                        isset($params->descripcion_proc_3)?($params->descripcion_proc_3!=""?strtoupper($params->descripcion_proc_3):null):null,
-                        isset($params->proc4_si_no)?($params->proc4_si_no!=""?$params->proc4_si_no:null):null,
-                        isset($params->codigo_proc_4)?($params->codigo_proc_4!=""?strtoupper($params->codigo_proc_4):null):null,
-                        isset($params->descripcion_proc_4)?($params->descripcion_proc_4!=""?strtoupper($params->descripcion_proc_4):null):null,
-                        isset($params->tipo_actividad)?($params->tipo_actividad!=""?strtoupper($params->tipo_actividad):null):null,
-                        Session::get('idusuario'),
-                        date('Y-m-d H:i:s'),
-                        null,
-                        null,
-                        isset($params->presion_sistolica)?($params->presion_sistolica!=""?$params->presion_sistolica:null):null,
-                        isset($params->presion_diastolica)?($params->presion_diastolica!=""?$params->presion_diastolica:null):null,
-                        isset($params->presion_arterial_media)?($params->presion_arterial_media!=""?$params->presion_arterial_media:null):null,
-                        isset($params->saturacion_oxigeno)?($params->saturacion_oxigeno!=""?$params->saturacion_oxigeno:null):null,
-                        isset($params->frecuencia_cardiaca)?($params->frecuencia_cardiaca!=""?$params->frecuencia_cardiaca:null):null,
-                        isset($params->frecuencia_respiratoria)?($params->frecuencia_respiratoria!=""?$params->frecuencia_respiratoria:null):null,
-                        isset($params->temperatura)?($params->temperatura!=""?$params->temperatura:null):null,
-                        isset($params->area_atencion)?($params->area_atencion!=""?$params->area_atencion:null):null,
-                        isset($params->tratamiento_adicional)?($params->tratamiento_adicional!=""?$params->tratamiento_adicional:null):null,
-                        isset($params->nro_dia_tratamiento)?($params->nro_dia_tratamiento!=""?$params->nro_dia_tratamiento:null):null,
-                        1,
-                        isset($params->tipo_profesional_procedimiento)?($params->tipo_profesional_procedimiento!=""?$params->tipo_profesional_procedimiento:null):null,
-                        isset($params->idprofesional_no_medico)?($params->idprofesional_no_medico!=""?$params->idprofesional_no_medico:null):null,
-                        isset($params->nro_doc_profecional_no_medico)?($params->nro_doc_profecional_no_medico!=""?$params->nro_doc_profecional_no_medico:null):null,
-                        isset($params->nombre_profesional_no_medico)?($params->nombre_profesional_no_medico!=""?$params->nombre_profesional_no_medico:null):null
-                    ]);
+                    //registramos la emergencia
+                    $emergencia = new Emergencia();
+                    $emergencia->cod_2000 = $params->cod_2000;
+                    $emergencia->fecha_atencion = Util::convertirStringFecha($params->fecha_atencion, false);
+                    $emergencia->hora_atencion = $params->hora_atencion;
+                    $emergencia->hc = isset($params->hc)?($params->hc!=""?$params->hc:null):null;
+                    $emergencia->idfinanciador = isset($params->idfinanciador)?($params->idfinanciador!=""?$params->idfinanciador:null):null;
+                    $emergencia->edad = isset($params->edad)?($params->edad!=""?$params->edad:null):null;
+                    $emergencia->tipo_edad = isset($params->tipo_edad)?($params->tipo_edad!=""?strtoupper($params->tipo_edad):null):null;
+                    $emergencia->idpersona = $params->idpersona;
+                    $emergencia->tipo_doc_acomp = isset($params->tipo_doc_acomp)?($params->tipo_doc_acomp!=""?$params->tipo_doc_acomp:null):null;
+                    $emergencia->nro_doc_acomp = isset($params->nro_doc_acomp)?($params->nro_doc_acomp!=""?$params->nro_doc_acomp:null):null;
+                    $emergencia->nombre_acomp = isset($params->nombre_acomp)?($params->nombre_acomp!=""?strtoupper($params->nombre_acomp):null):null;
+                    $emergencia->telefono_acomp = isset($params->telefono_acomp)?($params->telefono_acomp!=""?$params->telefono_acomp:null):null;
+                    $emergencia->idmotivo_atencion = isset($params->idmotivo_atencion)?($params->idmotivo_atencion!=""?$params->idmotivo_atencion:null):null;
+                    $emergencia->idubigeo_lugar_ocurrencia = isset($params->idubigeo_lugar_ocurrencia)?($params->idubigeo_lugar_ocurrencia!=""?$params->idubigeo_lugar_ocurrencia:null):null;
+                    $emergencia->idups = isset($params->idups)?($params->idups!=""?$params->idups:null):null;
+                    $emergencia->idcondicion_salida = isset($params->idcondicion_salida)?($params->idcondicion_salida!=""?$params->idcondicion_salida:null):null;
+                    $emergencia->fecha_salida = isset($params->fecha_salida)?($params->fecha_salida!=""?Util::convertirStringFecha($params->fecha_salida, false):null):null;
+                    $emergencia->hora_salida = isset($params->hora_salida)?($params->hora_salida!=""?$params->hora_salida:null):null;
+                    $emergencia->iddestino = isset($params->iddestino)?($params->iddestino!=""?$params->iddestino:null):null;
+                    $emergencia->cod_2000_referencia = isset($params->cod_2000_referencia)?($params->cod_2000_referencia!=""?$params->cod_2000_referencia:null):null;
+                    $emergencia->idups_hospitalizacion = isset($params->idups_hospitalizacion)?($params->idups_hospitalizacion!=""?$params->idups_hospitalizacion:null):null;
+
+                    $emergencia->idprofesional = isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null;
+                    $emergencia->nro_doc_profecional = isset($params->nro_doc_profecional)?($params->nro_doc_profecional!=""?$params->nro_doc_profecional:null):null;
+                    $emergencia->nombre_profesional = isset($params->nombre_profesional)?($params->nombre_profesional!=""?strtoupper($params->nombre_profesional):null):null;
+                    $emergencia->dx1_si_no = isset($params->dx1_si_no)?($params->dx1_si_no!=""?$params->dx1_si_no:null):null;
+                    $emergencia->codigo_dx1 = isset($params->codigo_dx1)?($params->codigo_dx1!=""?strtoupper($params->codigo_dx1):null):null;
+                    $emergencia->descripcion_dx1 = isset($params->descripcion_dx1)?($params->descripcion_dx1!=""?strtoupper($params->descripcion_dx1):null):null;
+                    $emergencia->tipo_diagnostico_dx1 = isset($params->tipo_diagnostico_dx1)?($params->tipo_diagnostico_dx1!=""?strtoupper($params->tipo_diagnostico_dx1):null):null;
+                    $emergencia->dx2_si_no = isset($params->dx2_si_no)?($params->dx2_si_no!=""?$params->dx2_si_no:null):null;
+                    $emergencia->codigo_dx2 = isset($params->codigo_dx2)?($params->codigo_dx2!=""?strtoupper($params->codigo_dx2):null):null;
+                    $emergencia->descripcion_dx2 = isset($params->descripcion_dx2)?($params->descripcion_dx2!=""?strtoupper($params->descripcion_dx2):null):null;
+                    $emergencia->tipo_diagnostico_dx2 = isset($params->tipo_diagnostico_dx2)?($params->tipo_diagnostico_dx2!=""?strtoupper($params->tipo_diagnostico_dx2):null):null;
+                    $emergencia->dx3_si_no = isset($params->dx3_si_no)?($params->dx3_si_no!=""?$params->dx3_si_no:null):null;
+                    $emergencia->codigo_dx3 = isset($params->codigo_dx3)?($params->codigo_dx3!=""?strtoupper($params->codigo_dx3):null):null;
+                    $emergencia->descripcion_dx3 = isset($params->descripcion_dx3)?($params->descripcion_dx3!=""?strtoupper($params->descripcion_dx3):null):null;
+                    $emergencia->tipo_diagnostico_dx3 = isset($params->tipo_diagnostico_dx3)?($params->tipo_diagnostico_dx3!=""?strtoupper($params->tipo_diagnostico_dx3):null):null;
+                    $emergencia->dx4_si_no = isset($params->dx4_si_no)?($params->dx4_si_no!=""?$params->dx4_si_no:null):null;
+                    $emergencia->codigo_dx4 = isset($params->codigo_dx4)?($params->codigo_dx4!=""?strtoupper($params->codigo_dx4):null):null;
+                    $emergencia->descripcion_dx4 = isset($params->descripcion_dx4)?($params->descripcion_dx4!=""?strtoupper($params->descripcion_dx4):null):null;
+                    $emergencia->tipo_diagnostico_dx4 = isset($params->tipo_diagnostico_dx4)?($params->tipo_diagnostico_dx4!=""?strtoupper($params->tipo_diagnostico_dx4):null):null;
+                    $emergencia->proc1_si_no = isset($params->proc1_si_no)?($params->proc1_si_no!=""?$params->proc1_si_no:null):null;
+                    $emergencia->codigo_proc_1 = isset($params->codigo_proc_1)?($params->codigo_proc_1!=""?strtoupper($params->codigo_proc_1):null):null;
+                    $emergencia->descripcion_proc_1 = isset($params->descripcion_proc_1)?($params->descripcion_proc_1!=""?strtoupper($params->descripcion_proc_1):null):null;
+                    $emergencia->proc2_si_no = isset($params->proc2_si_no)?($params->proc2_si_no!=""?$params->proc2_si_no:null):null;
+                    $emergencia->codigo_proc_2 = isset($params->codigo_proc_2)?($params->codigo_proc_2!=""?strtoupper($params->codigo_proc_2):null):null;
+                    $emergencia->descripcion_proc_2 = isset($params->descripcion_proc_2)?($params->descripcion_proc_2!=""?strtoupper($params->descripcion_proc_2):null):null;
+                    $emergencia->proc3_si_no = isset($params->proc3_si_no)?($params->proc3_si_no!=""?$params->proc3_si_no:null):null;
+                    $emergencia->codigo_proc_3 = isset($params->codigo_proc_3)?($params->codigo_proc_3!=""?strtoupper($params->codigo_proc_3):null):null;
+                    $emergencia->descripcion_proc_3 = isset($params->descripcion_proc_3)?($params->descripcion_proc_3!=""?strtoupper($params->descripcion_proc_3):null):null;
+                    $emergencia->proc4_si_no = isset($params->proc4_si_no)?($params->proc4_si_no!=""?$params->proc4_si_no:null):null;
+
+                    $emergencia->codigo_proc_4 = isset($params->codigo_proc_4)?($params->codigo_proc_4!=""?strtoupper($params->codigo_proc_4):null):null;
+                    $emergencia->descripcion_proc_4 = isset($params->descripcion_proc_4)?($params->descripcion_proc_4!=""?strtoupper($params->descripcion_proc_4):null):null;
+                    $emergencia->tipo_actividad = isset($params->tipo_actividad)?($params->tipo_actividad!=""?strtoupper($params->tipo_actividad):null):null;
+                    $emergencia->idusuario_registro = Session::get('idusuario');
+                    $emergencia->fecha_registro = date('Y-m-d H:i:s');
+                    
+                    $emergencia->presion_sistolica = isset($params->presion_sistolica)?($params->presion_sistolica!=""?$params->presion_sistolica:null):null;
+                    $emergencia->presion_diastolica = isset($params->presion_diastolica)?($params->presion_diastolica!=""?$params->presion_diastolica:null):null;
+                    $emergencia->presion_arterial_media = isset($params->presion_arterial_media)?($params->presion_arterial_media!=""?$params->presion_arterial_media:null):null;
+                    $emergencia->saturacion_oxigeno = isset($params->saturacion_oxigeno)?($params->saturacion_oxigeno!=""?$params->saturacion_oxigeno:null):null;
+                    $emergencia->frecuencia_cardiaca = isset($params->frecuencia_cardiaca)?($params->frecuencia_cardiaca!=""?$params->frecuencia_cardiaca:null):null;
+                    $emergencia->frecuencia_respiratoria = isset($params->frecuencia_respiratoria)?($params->frecuencia_respiratoria!=""?$params->frecuencia_respiratoria:null):null;
+                    $emergencia->temperatura = isset($params->temperatura)?($params->temperatura!=""?$params->temperatura:null):null;
+                    $emergencia->area_atencion = isset($params->area_atencion)?($params->area_atencion!=""?$params->area_atencion:null):null;
+                    $emergencia->tratamiento_adicional = isset($params->tratamiento_adicional)?($params->tratamiento_adicional!=""?$params->tratamiento_adicional:null):null;
+                    $emergencia->nro_dia_tratamiento = isset($params->nro_dia_tratamiento)?($params->nro_dia_tratamiento!=""?$params->nro_dia_tratamiento:null):null;
+                    $emergencia->estado = 1;
+                    $emergencia->idprofesional_no_medico = isset($params->idprofesional_no_medico)?($params->idprofesional_no_medico!=""?$params->idprofesional_no_medico:null):null;
+                    $emergencia->nro_doc_profecional_no_medico = isset($params->nro_doc_profecional_no_medico)?($params->nro_doc_profecional_no_medico!=""?$params->nro_doc_profecional_no_medico:null):null;
+                    $emergencia->nombre_profesional_no_medico = isset($params->nombre_profesional_no_medico)?($params->nombre_profesional_no_medico!=""?$params->nombre_profesional_no_medico:null):null;
+                    $emergencia->peso = isset($params->peso)?($params->peso!=""?$params->peso:null):null;
+                    $emergencia->talla = isset($params->talla)?($params->talla!=""?$params->talla:null):null;
+                    $emergencia->idups_proc = isset($params->idups_proc)?($params->idups_proc!=""?$params->idups_proc:null):null;
+                    $emergencia->save();
 
                     if(isset($params->detalle_medicamento)){
-                        $sql_id_emerg = "select MAX(id) as idemergencia from emergencia";
-                        $id_emerger = DB::selectOne($sql_id_emerg);
                         foreach($params->detalle_medicamento as $item){
                             $sql_medicamento = "INSERT INTO detalle_medicamento (idemergencia, idmedicamento, descripcion_medicamento, cantidad, idemergencia_tratamiento, estado) VALUES (?, ?, ?, ?, ?, ?);";
-                            DB::insert($sql_medicamento, [$id_emerger->idemergencia, $item->id, $item->descripcion, isset($item->cantidad)?$item->cantidad:null, null, 1]);
+                            DB::insert($sql_medicamento, [$$emergencia->id, $item->id, $item->descripcion, isset($item->cantidad)?$item->cantidad:null, null, 1]);
                         }
                     }
 
+                    // Personal medico
                     if(isset($params->detalle_his)){
                         foreach($params->detalle_his as $item){
                             $sql_his = "INSERT INTO actividades_his (idemergencia, idemergencia_tratamiento, idhospitalizacion, idregistrador, idprofesional, cod_2000, codigo_ups, ups, condicion_establecimiento, condicion_servicio, fecha, codigo_cie, descripcion_cie, tipodianostico, lab1, lab2, lab3, item, impresion, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                             DB::insert($sql_his, [
-                                $id_emerger->idemergencia, null, null, Session::get('idusuario'), isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null,
+                                $emergencia->id, null, null, Session::get('idusuario'), isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null,
                                 isset($params->cod_2000)?($params->cod_2000!=""?$params->cod_2000:null):null,
                                 isset($params->idups)?($params->idups!=""?$params->idups:null):null,
                                 isset($params->descripcion_ups)?($params->descripcion_ups!=""?$params->descripcion_ups:null):null,
@@ -304,7 +300,32 @@ class EmergenciaRepository
                                 isset($params->fecha_atencion)?($params->fecha_atencion!=""?Util::convertirStringFecha($params->fecha_atencion, false):null):null,
                                 isset($item->codigo_cie)?$item->codigo_cie:null,
                                 isset($item->descripcion_cie)?$item->descripcion_cie:null,
-                                isset($item->tipodianostico)?$item->tipodianostico:'D',
+                                isset($item->tipo_diagnostico)?$item->tipo_diagnostico:'D',
+                                isset($item->lab1)?$item->lab1:null,
+                                isset($item->lab2)?$item->lab2:null,
+                                isset($item->lab3)?$item->lab3:null,
+                                isset($item->item)?$item->item:null,
+                                isset($item->impresion)?$item->impresion:0,
+                                1
+                            ]);
+                        }
+                    }
+
+                    // Personal no medico
+                    if(isset($params->detalle_his_nm)){
+                        foreach($params->detalle_his_nm as $item){
+                            $sql_his = "INSERT INTO actividades_his (idemergencia, idemergencia_tratamiento, idhospitalizacion, idregistrador, idprofesional, cod_2000, codigo_ups, ups, condicion_establecimiento, condicion_servicio, fecha, codigo_cie, descripcion_cie, tipodianostico, lab1, lab2, lab3, item, impresion, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                            DB::insert($sql_his, [
+                                $emergencia->id, null, null, Session::get('idusuario'), isset($params->idprofesional_no_medico)?($params->idprofesional_no_medico!=""?$params->idprofesional_no_medico:null):null,
+                                isset($params->cod_2000)?($params->cod_2000!=""?$params->cod_2000:null):null,
+                                isset($params->idups_procedimiento)?($params->idups_procedimiento!=""?$params->idups_procedimiento:null):null,
+                                isset($params->descripcion_ups_proc)?($params->descripcion_ups_proc!=""?$params->descripcion_ups_proc:null):null,
+                                isset($params->condicion_establecimiento)?($params->condicion_establecimiento!=""?$params->condicion_establecimiento:null):null,
+                                isset($params->condicion_servicio)?($params->condicion_servicio!=""?$params->condicion_servicio:null):null,
+                                isset($params->fecha_atencion)?($params->fecha_atencion!=""?Util::convertirStringFecha($params->fecha_atencion, false):null):null,
+                                isset($item->codigo_cie)?$item->codigo_cie:null,
+                                isset($item->descripcion_cie)?$item->descripcion_cie:null,
+                                isset($item->tipo_diagnostico)?$item->tipo_diagnostico:'D',
                                 isset($item->lab1)?$item->lab1:null,
                                 isset($item->lab2)?$item->lab2:null,
                                 isset($item->lab3)?$item->lab3:null,
@@ -333,93 +354,91 @@ class EmergenciaRepository
                         isset($params->idetnia)?($params->idetnia!=""?$params->idetnia:null):null
                     ]);
                     //obtenemos el ultimo id de la persona registrado
-                    $idpersona = DB::select("SELECT MAX(id) as idpersona FROM persona");
-                    //registramos la emergencia
-                    $sql = "INSERT INTO emergencia (cod_2000, fecha_atencion, hora_atencion, hc, idfinanciador, edad, tipo_edad, idpersona, tipo_doc_acomp, nro_doc_acomp, nombre_acomp, telefono_acomp, idmotivo_atencion, motivo_atencion_descripcion, idubigeo_lugar_ocurrencia, idups, idcondicion_salida, fecha_salida, hora_salida, iddestino, cod_2000_referencia, idups_hospitalizacion, tipo_profesional_atencion, idprofesional, nro_doc_profecional, nombre_profesional, dx1_si_no, codigo_dx1, descripcion_dx1, tipo_diagnostico_dx1, dx2_si_no, codigo_dx2, descripcion_dx2, tipo_diagnostico_dx2, dx3_si_no, codigo_dx3, descripcion_dx3, tipo_diagnostico_dx3, dx4_si_no, codigo_dx4, descripcion_dx4, tipo_diagnostico_dx4, proc1_si_no, codigo_proc_1, descripcion_proc_1, proc2_si_no, codigo_proc_2, descripcion_proc_2, proc3_si_no, codigo_proc_3, descripcion_proc_3, proc4_si_no, codigo_proc_4, descripcion_proc_4, tipo_actividad, idusuario_registro, fecha_registro, idusuario_modificacion, fecha_modificacion, presion_sistolica, presion_diastolica, presion_arterial_media, saturacion_oxigeno, frecuencia_cardiaca, frecuencia_respiratoria, temperatura, area_atencion, tratamiento_adicional, nro_dia_tratamiento, estado, tipo_profesional_procedimiento, idprofesional_no_medico, nro_doc_profecional_no_medico, nombre_profesional_no_medico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-                    DB::insert($sql, [
-                        isset($params->cod_2000)?($params->cod_2000!=""?$params->cod_2000:null):null,
-                        isset($params->fecha_atencion)?($params->fecha_atencion!=""?Util::convertirStringFecha($params->fecha_atencion, false):null):null,
-                        isset($params->hora_atencion)?($params->hora_atencion!=""?$params->hora_atencion:null):null,
-                        isset($params->hc)?($params->hc!=""?strtoupper($params->hc):null):null,
-                        isset($params->idfinanciador)?($params->idfinanciador!=""?$params->idfinanciador:null):null,
-                        isset($params->edad)?($params->edad!=""?$params->edad:null):null,
-                        isset($params->tipo_edad)?($params->tipo_edad!=""?strtoupper($params->tipo_edad):null):null,
-                        $idpersona[0]->idpersona,
-                        isset($params->tipo_doc_acomp)?($params->tipo_doc_acomp!=""?$params->tipo_doc_acomp:null):null,
-                        isset($params->nro_doc_acomp)?($params->nro_doc_acomp!=""?strtoupper($params->nro_doc_acomp):null):null,
-                        isset($params->nombre_acomp)?($params->nombre_acomp!=""?strtoupper($params->nombre_acomp):null):null,
-                        isset($params->telefono_acomp)?($params->telefono_acomp!=""?$params->telefono_acomp:null):null,
-                        isset($params->idmotivo_atencion)?($params->idmotivo_atencion!=""?$params->idmotivo_atencion:null):null,
-                        isset($params->motivo_atencion_descripcion)?($params->motivo_atencion_descripcion!=""?$params->motivo_atencion_descripcion:null):null,
-                        isset($params->idubigeo_lugar_ocurrencia)?($params->idubigeo_lugar_ocurrencia!=""?$params->idubigeo_lugar_ocurrencia:null):null,
-                        isset($params->idups)?($params->idups!=""?$params->idups:null):null,
-                        isset($params->idcondicion_salida)?($params->idcondicion_salida!=""?$params->idcondicion_salida:null):null,
-                        isset($params->fecha_salida)?($params->fecha_salida!=""?Util::convertirStringFecha($params->fecha_salida, false):null):null,
-                        isset($params->hora_salida)?($params->hora_salida!=""?$params->hora_salida:null):null,
-                        isset($params->iddestino)?($params->iddestino!=""?$params->iddestino:null):null,
-                        isset($params->cod_2000_referencia)?($params->cod_2000_referencia!=""?$params->cod_2000_referencia:null):null,
-                        isset($params->idups_hospitalizacion)?($params->idups_hospitalizacion!=""?$params->idups_hospitalizacion:null):null,
-                        isset($params->tipo_profesional_atencion)?($params->tipo_profesional_atencion!=""?$params->tipo_profesional_atencion:null):null,
-                        isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null,
-                        isset($params->nro_doc_profecional)?($params->nro_doc_profecional!=""?$params->nro_doc_profecional:null):null,
-                        isset($params->nombre_profesional)?($params->nombre_profesional!=""?strtoupper($params->nombre_profesional):null):null,
-                        isset($params->dx1_si_no)?($params->dx1_si_no!=""?$params->dx1_si_no:null):null,
-                        isset($params->codigo_dx1)?($params->codigo_dx1!=""?strtoupper($params->codigo_dx1):null):null,
-                        isset($params->descripcion_dx1)?($params->descripcion_dx1!=""?strtoupper($params->descripcion_dx1):null):null,
-                        isset($params->tipo_diagnostico_dx1)?($params->tipo_diagnostico_dx1!=""?strtoupper($params->tipo_diagnostico_dx1):null):null,
-                        isset($params->dx2_si_no)?($params->dx2_si_no!=""?$params->dx2_si_no:null):null,
-                        isset($params->codigo_dx2)?($params->codigo_dx2!=""?strtoupper($params->codigo_dx2):null):null,
-                        isset($params->descripcion_dx2)?($params->descripcion_dx2!=""?strtoupper($params->descripcion_dx2):null):null,
-                        isset($params->tipo_diagnostico_dx2)?($params->tipo_diagnostico_dx2!=""?strtoupper($params->tipo_diagnostico_dx2):null):null,
-                        isset($params->dx3_si_no)?($params->dx3_si_no!=""?$params->dx3_si_no:null):null,
-                        isset($params->codigo_dx3)?($params->codigo_dx3!=""?strtoupper($params->codigo_dx3):null):null,
-                        isset($params->descripcion_dx3)?($params->descripcion_dx3!=""?strtoupper($params->descripcion_dx3):null):null,
-                        isset($params->tipo_diagnostico_dx3)?($params->tipo_diagnostico_dx3!=""?strtoupper($params->tipo_diagnostico_dx3):null):null,
-                        isset($params->dx4_si_no)?($params->dx4_si_no!=""?$params->dx4_si_no:null):null,
-                        isset($params->codigo_dx4)?($params->codigo_dx4!=""?strtoupper($params->codigo_dx4):null):null,
-                        isset($params->descripcion_dx4)?($params->descripcion_dx4!=""?strtoupper($params->descripcion_dx4):null):null,
-                        isset($params->tipo_diagnostico_dx4)?($params->tipo_diagnostico_dx4!=""?strtoupper($params->tipo_diagnostico_dx4):null):null,
-                        isset($params->proc1_si_no)?($params->proc1_si_no!=""?$params->proc1_si_no:null):null,
-                        isset($params->codigo_proc_1)?($params->codigo_proc_1!=""?strtoupper($params->codigo_proc_1):null):null,
-                        isset($params->descripcion_proc_1)?($params->descripcion_proc_1!=""?strtoupper($params->descripcion_proc_1):null):null,
-                        isset($params->proc2_si_no)?($params->proc2_si_no!=""?$params->proc2_si_no:null):null,
-                        isset($params->codigo_proc_2)?($params->codigo_proc_2!=""?strtoupper($params->codigo_proc_2):null):null,
-                        isset($params->descripcion_proc_2)?($params->descripcion_proc_2!=""?strtoupper($params->descripcion_proc_2):null):null,
-                        isset($params->proc3_si_no)?($params->proc3_si_no!=""?$params->proc3_si_no:null):null,
-                        isset($params->codigo_proc_3)?($params->codigo_proc_3!=""?strtoupper($params->codigo_proc_3):null):null,
-                        isset($params->descripcion_proc_3)?($params->descripcion_proc_3!=""?strtoupper($params->descripcion_proc_3):null):null,
-                        isset($params->proc4_si_no)?($params->proc4_si_no!=""?$params->proc4_si_no:null):null,
-                        isset($params->codigo_proc_4)?($params->codigo_proc_4!=""?strtoupper($params->codigo_proc_4):null):null,
-                        isset($params->descripcion_proc_4)?($params->descripcion_proc_4!=""?strtoupper($params->descripcion_proc_4):null):null,
-                        isset($params->tipo_actividad)?($params->tipo_actividad!=""?strtoupper($params->tipo_actividad):null):null,
-                        Session::get('idusuario'),
-                        date('Y-m-d H:i:s'),
-                        null,
-                        null,
-                        isset($params->presion_sistolica)?($params->presion_sistolica!=""?$params->presion_sistolica:null):null,
-                        isset($params->presion_diastolica)?($params->presion_diastolica!=""?$params->presion_diastolica:null):null,
-                        isset($params->presion_arterial_media)?($params->presion_arterial_media!=""?$params->presion_arterial_media:null):null,
-                        isset($params->saturacion_oxigeno)?($params->saturacion_oxigeno!=""?$params->saturacion_oxigeno:null):null,
-                        isset($params->frecuencia_cardiaca)?($params->frecuencia_cardiaca!=""?$params->frecuencia_cardiaca:null):null,
-                        isset($params->frecuencia_respiratoria)?($params->frecuencia_respiratoria!=""?$params->frecuencia_respiratoria:null):null,
-                        isset($params->temperatura)?($params->temperatura!=""?$params->temperatura:null):null,
-                        isset($params->area_atencion)?($params->area_atencion!=""?$params->area_atencion:null):null,
-                        isset($params->tratamiento_adicional)?($params->tratamiento_adicional!=""?$params->tratamiento_adicional:null):null,
-                        isset($params->nro_dia_tratamiento)?($params->nro_dia_tratamiento!=""?$params->nro_dia_tratamiento:null):null,
-                        1,
-                        isset($params->tipo_profesional_procedimiento)?($params->tipo_profesional_procedimiento!=""?$params->tipo_profesional_procedimiento:null):null,
-                        isset($params->idprofesional_no_medico)?($params->idprofesional_no_medico!=""?$params->idprofesional_no_medico:null):null,
-                        isset($params->nro_doc_profecional_no_medico)?($params->nro_doc_profecional_no_medico!=""?$params->nro_doc_profecional_no_medico:null):null,
-                        isset($params->nombre_profesional_no_medico)?($params->nombre_profesional_no_medico!=""?$params->nombre_profesional_no_medico:null):null
-                    ]);
+                    $idpersona = DB::selectOne("SELECT MAX(id) as idpersona FROM persona");
 
-                    $sql_id_emerg = "select MAX(id) as idemergencia from emergencia";
-                    $id_emerger = DB::selectOne($sql_id_emerg);
+                    //registramos la emergencia
+                    $emergencia = new Emergencia();
+                    $emergencia->cod_2000 = $params->cod_2000;
+                    $emergencia->fecha_atencion = Util::convertirStringFecha($params->fecha_atencion, false);
+                    $emergencia->hora_atencion = $params->hora_atencion;
+                    $emergencia->hc = isset($params->hc)?($params->hc!=""?$params->hc:null):null;
+                    $emergencia->idfinanciador = isset($params->idfinanciador)?($params->idfinanciador!=""?$params->idfinanciador:null):null;
+                    $emergencia->edad = isset($params->edad)?($params->edad!=""?$params->edad:null):null;
+                    $emergencia->tipo_edad = isset($params->tipo_edad)?($params->tipo_edad!=""?strtoupper($params->tipo_edad):null):null;
+                    $emergencia->idpersona = $idpersona->idpersona;
+                    $emergencia->tipo_doc_acomp = isset($params->tipo_doc_acomp)?($params->tipo_doc_acomp!=""?$params->tipo_doc_acomp:null):null;
+                    $emergencia->nro_doc_acomp = isset($params->nro_doc_acomp)?($params->nro_doc_acomp!=""?$params->nro_doc_acomp:null):null;
+                    $emergencia->nombre_acomp = isset($params->nombre_acomp)?($params->nombre_acomp!=""?strtoupper($params->nombre_acomp):null):null;
+                    $emergencia->telefono_acomp = isset($params->telefono_acomp)?($params->telefono_acomp!=""?$params->telefono_acomp:null):null;
+                    $emergencia->idmotivo_atencion = isset($params->idmotivo_atencion)?($params->idmotivo_atencion!=""?$params->idmotivo_atencion:null):null;
+                    $emergencia->idubigeo_lugar_ocurrencia = isset($params->idubigeo_lugar_ocurrencia)?($params->idubigeo_lugar_ocurrencia!=""?$params->idubigeo_lugar_ocurrencia:null):null;
+                    $emergencia->idups = isset($params->idups)?($params->idups!=""?$params->idups:null):null;
+                    $emergencia->idcondicion_salida = isset($params->idcondicion_salida)?($params->idcondicion_salida!=""?$params->idcondicion_salida:null):null;
+                    $emergencia->fecha_salida = isset($params->fecha_salida)?($params->fecha_salida!=""?Util::convertirStringFecha($params->fecha_salida, false):null):null;
+                    $emergencia->hora_salida = isset($params->hora_salida)?($params->hora_salida!=""?$params->hora_salida:null):null;
+                    $emergencia->iddestino = isset($params->iddestino)?($params->iddestino!=""?$params->iddestino:null):null;
+                    $emergencia->cod_2000_referencia = isset($params->cod_2000_referencia)?($params->cod_2000_referencia!=""?$params->cod_2000_referencia:null):null;
+                    $emergencia->idups_hospitalizacion = isset($params->idups_hospitalizacion)?($params->idups_hospitalizacion!=""?$params->idups_hospitalizacion:null):null;
+                    $emergencia->idprofesional = isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null;
+                    $emergencia->nro_doc_profecional = isset($params->nro_doc_profecional)?($params->nro_doc_profecional!=""?$params->nro_doc_profecional:null):null;
+                    $emergencia->nombre_profesional = isset($params->nombre_profesional)?($params->nombre_profesional!=""?strtoupper($params->nombre_profesional):null):null;
+                    $emergencia->dx1_si_no = isset($params->dx1_si_no)?($params->dx1_si_no!=""?$params->dx1_si_no:null):null;
+                    $emergencia->codigo_dx1 = isset($params->codigo_dx1)?($params->codigo_dx1!=""?strtoupper($params->codigo_dx1):null):null;
+                    $emergencia->descripcion_dx1 = isset($params->descripcion_dx1)?($params->descripcion_dx1!=""?strtoupper($params->descripcion_dx1):null):null;
+                    $emergencia->tipo_diagnostico_dx1 = isset($params->tipo_diagnostico_dx1)?($params->tipo_diagnostico_dx1!=""?strtoupper($params->tipo_diagnostico_dx1):null):null;
+                    $emergencia->dx2_si_no = isset($params->dx2_si_no)?($params->dx2_si_no!=""?$params->dx2_si_no:null):null;
+                    $emergencia->codigo_dx2 = isset($params->codigo_dx2)?($params->codigo_dx2!=""?strtoupper($params->codigo_dx2):null):null;
+                    $emergencia->descripcion_dx2 = isset($params->descripcion_dx2)?($params->descripcion_dx2!=""?strtoupper($params->descripcion_dx2):null):null;
+                    $emergencia->tipo_diagnostico_dx2 = isset($params->tipo_diagnostico_dx2)?($params->tipo_diagnostico_dx2!=""?strtoupper($params->tipo_diagnostico_dx2):null):null;
+                    $emergencia->dx3_si_no = isset($params->dx3_si_no)?($params->dx3_si_no!=""?$params->dx3_si_no:null):null;
+                    $emergencia->codigo_dx3 = isset($params->codigo_dx3)?($params->codigo_dx3!=""?strtoupper($params->codigo_dx3):null):null;
+                    $emergencia->descripcion_dx3 = isset($params->descripcion_dx3)?($params->descripcion_dx3!=""?strtoupper($params->descripcion_dx3):null):null;
+                    $emergencia->tipo_diagnostico_dx3 = isset($params->tipo_diagnostico_dx3)?($params->tipo_diagnostico_dx3!=""?strtoupper($params->tipo_diagnostico_dx3):null):null;
+                    $emergencia->dx4_si_no = isset($params->dx4_si_no)?($params->dx4_si_no!=""?$params->dx4_si_no:null):null;
+                    $emergencia->codigo_dx4 = isset($params->codigo_dx4)?($params->codigo_dx4!=""?strtoupper($params->codigo_dx4):null):null;
+                    $emergencia->descripcion_dx4 = isset($params->descripcion_dx4)?($params->descripcion_dx4!=""?strtoupper($params->descripcion_dx4):null):null;
+                    $emergencia->tipo_diagnostico_dx4 = isset($params->tipo_diagnostico_dx4)?($params->tipo_diagnostico_dx4!=""?strtoupper($params->tipo_diagnostico_dx4):null):null;
+                    $emergencia->proc1_si_no = isset($params->proc1_si_no)?($params->proc1_si_no!=""?$params->proc1_si_no:null):null;
+                    $emergencia->codigo_proc_1 = isset($params->codigo_proc_1)?($params->codigo_proc_1!=""?strtoupper($params->codigo_proc_1):null):null;
+                    $emergencia->descripcion_proc_1 = isset($params->descripcion_proc_1)?($params->descripcion_proc_1!=""?strtoupper($params->descripcion_proc_1):null):null;
+                    $emergencia->proc2_si_no = isset($params->proc2_si_no)?($params->proc2_si_no!=""?$params->proc2_si_no:null):null;
+                    $emergencia->codigo_proc_2 = isset($params->codigo_proc_2)?($params->codigo_proc_2!=""?strtoupper($params->codigo_proc_2):null):null;
+                    $emergencia->descripcion_proc_2 = isset($params->descripcion_proc_2)?($params->descripcion_proc_2!=""?strtoupper($params->descripcion_proc_2):null):null;
+                    $emergencia->proc3_si_no = isset($params->proc3_si_no)?($params->proc3_si_no!=""?$params->proc3_si_no:null):null;
+                    $emergencia->codigo_proc_3 = isset($params->codigo_proc_3)?($params->codigo_proc_3!=""?strtoupper($params->codigo_proc_3):null):null;
+                    $emergencia->descripcion_proc_3 = isset($params->descripcion_proc_3)?($params->descripcion_proc_3!=""?strtoupper($params->descripcion_proc_3):null):null;
+                    $emergencia->proc4_si_no = isset($params->proc4_si_no)?($params->proc4_si_no!=""?$params->proc4_si_no:null):null;
+
+                    $emergencia->codigo_proc_4 = isset($params->codigo_proc_4)?($params->codigo_proc_4!=""?strtoupper($params->codigo_proc_4):null):null;
+                    $emergencia->descripcion_proc_4 = isset($params->descripcion_proc_4)?($params->descripcion_proc_4!=""?strtoupper($params->descripcion_proc_4):null):null;
+                    $emergencia->tipo_actividad = isset($params->tipo_actividad)?($params->tipo_actividad!=""?strtoupper($params->tipo_actividad):null):null;
+                    $emergencia->idusuario_registro = Session::get('idusuario');
+                    $emergencia->fecha_registro = date('Y-m-d H:i:s');
+                    
+                    $emergencia->presion_sistolica = isset($params->presion_sistolica)?($params->presion_sistolica!=""?$params->presion_sistolica:null):null;
+                    $emergencia->presion_diastolica = isset($params->presion_diastolica)?($params->presion_diastolica!=""?$params->presion_diastolica:null):null;
+                    $emergencia->presion_arterial_media = isset($params->presion_arterial_media)?($params->presion_arterial_media!=""?$params->presion_arterial_media:null):null;
+                    $emergencia->saturacion_oxigeno = isset($params->saturacion_oxigeno)?($params->saturacion_oxigeno!=""?$params->saturacion_oxigeno:null):null;
+                    $emergencia->frecuencia_cardiaca = isset($params->frecuencia_cardiaca)?($params->frecuencia_cardiaca!=""?$params->frecuencia_cardiaca:null):null;
+                    $emergencia->frecuencia_respiratoria = isset($params->frecuencia_respiratoria)?($params->frecuencia_respiratoria!=""?$params->frecuencia_respiratoria:null):null;
+                    $emergencia->temperatura = isset($params->temperatura)?($params->temperatura!=""?$params->temperatura:null):null;
+                    $emergencia->area_atencion = isset($params->area_atencion)?($params->area_atencion!=""?$params->area_atencion:null):null;
+                    $emergencia->tratamiento_adicional = isset($params->tratamiento_adicional)?($params->tratamiento_adicional!=""?$params->tratamiento_adicional:null):null;
+                    $emergencia->nro_dia_tratamiento = isset($params->nro_dia_tratamiento)?($params->nro_dia_tratamiento!=""?$params->nro_dia_tratamiento:null):null;
+                    $emergencia->estado = 1;
+                    $emergencia->idprofesional_no_medico = isset($params->idprofesional_no_medico)?($params->idprofesional_no_medico!=""?$params->idprofesional_no_medico:null):null;
+                    $emergencia->nro_doc_profecional_no_medico = isset($params->nro_doc_profecional_no_medico)?($params->nro_doc_profecional_no_medico!=""?$params->nro_doc_profecional_no_medico:null):null;
+                    $emergencia->nombre_profesional_no_medico = isset($params->nombre_profesional_no_medico)?($params->nombre_profesional_no_medico!=""?$params->nombre_profesional_no_medico:null):null;
+                    $emergencia->peso = isset($params->peso)?($params->peso!=""?$params->peso:null):null;
+                    $emergencia->talla = isset($params->talla)?($params->talla!=""?$params->talla:null):null;
+                    $emergencia->idups_proc = isset($params->idups_proc)?($params->idups_proc!=""?$params->idups_proc:null):null;
+                    $emergencia->save();
+                    
 
                     if(isset($params->detalle_medicamento)){
                         foreach($params->detalle_medicamento as $item){
                             $sql_medicamento = "INSERT INTO detalle_medicamento (idemergencia, idmedicamento, descripcion_medicamento, cantidad, idemergencia_tratamiento, estado) VALUES (?, ?, ?, ?, ?, ?);";
-                            DB::insert($sql_medicamento, [$id_emerger->idemergencia, $item->id, $item->descripcion, isset($item->cantidad)?$item->cantidad:null, null, 1]);
+                            DB::insert($sql_medicamento, [$emergencia->id, $item->id, $item->descripcion, isset($item->cantidad)?$item->cantidad:null, null, 1]);
                         }
                     }
 
@@ -427,7 +446,7 @@ class EmergenciaRepository
                         foreach($params->detalle_his as $item){
                             $sql_his = "INSERT INTO actividades_his (idemergencia, idemergencia_tratamiento, idhospitalizacion, idregistrador, idprofesional, cod_2000, codigo_ups, ups, condicion_establecimiento, condicion_servicio, fecha, codigo_cie, descripcion_cie, tipodianostico, lab1, lab2, lab3, item, impresion, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                             DB::insert($sql_his, [
-                                $id_emerger->idemergencia, null, null, Session::get('idusuario'), isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null,
+                                $emergencia->id, null, null, Session::get('idusuario'), isset($params->idprofesional)?($params->idprofesional!=""?$params->idprofesional:null):null,
                                 isset($params->cod_2000)?($params->cod_2000!=""?$params->cod_2000:null):null,
                                 isset($params->idups)?($params->idups!=""?$params->idups:null):null,
                                 isset($params->descripcion_ups)?($params->descripcion_ups!=""?$params->descripcion_ups:null):null,
@@ -436,7 +455,32 @@ class EmergenciaRepository
                                 isset($params->fecha_atencion)?($params->fecha_atencion!=""?Util::convertirStringFecha($params->fecha_atencion, false):null):null,
                                 isset($item->codigo_cie)?$item->codigo_cie:null,
                                 isset($item->descripcion_cie)?$item->descripcion_cie:null,
-                                isset($item->tipodianostico)?$item->tipodianostico:'D',
+                                isset($item->tipo_diagnostico)?$item->tipo_diagnostico:'D',
+                                isset($item->lab1)?$item->lab1:null,
+                                isset($item->lab2)?$item->lab2:null,
+                                isset($item->lab3)?$item->lab3:null,
+                                isset($item->item)?$item->item:null,
+                                isset($item->impresion)?$item->impresion:0,
+                                1
+                            ]);
+                        }
+                    }
+
+                    // Personal no medico
+                    if(isset($params->detalle_his_nm)){
+                        foreach($params->detalle_his_nm as $item){
+                            $sql_his = "INSERT INTO actividades_his (idemergencia, idemergencia_tratamiento, idhospitalizacion, idregistrador, idprofesional, cod_2000, codigo_ups, ups, condicion_establecimiento, condicion_servicio, fecha, codigo_cie, descripcion_cie, tipodianostico, lab1, lab2, lab3, item, impresion, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                            DB::insert($sql_his, [
+                                $emergencia->id, null, null, Session::get('idusuario'), isset($params->idprofesional_no_medico)?($params->idprofesional_no_medico!=""?$params->idprofesional_no_medico:null):null,
+                                isset($params->cod_2000)?($params->cod_2000!=""?$params->cod_2000:null):null,
+                                isset($params->idups_procedimiento)?($params->idups_procedimiento!=""?$params->idups_procedimiento:null):null,
+                                isset($params->descripcion_ups_proc)?($params->descripcion_ups_proc!=""?$params->descripcion_ups_proc:null):null,
+                                isset($params->condicion_establecimiento)?($params->condicion_establecimiento!=""?$params->condicion_establecimiento:null):null,
+                                isset($params->condicion_servicio)?($params->condicion_servicio!=""?$params->condicion_servicio:null):null,
+                                isset($params->fecha_atencion)?($params->fecha_atencion!=""?Util::convertirStringFecha($params->fecha_atencion, false):null):null,
+                                isset($item->codigo_cie)?$item->codigo_cie:null,
+                                isset($item->descripcion_cie)?$item->descripcion_cie:null,
+                                isset($item->tipo_diagnostico)?$item->tipo_diagnostico:'D',
                                 isset($item->lab1)?$item->lab1:null,
                                 isset($item->lab2)?$item->lab2:null,
                                 isset($item->lab3)?$item->lab3:null,

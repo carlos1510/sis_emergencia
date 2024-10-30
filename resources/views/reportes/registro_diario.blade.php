@@ -43,7 +43,7 @@
                 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Tipo de Servicio:</label>
                                 <div> 
@@ -58,26 +58,46 @@
                                 </div>   
                             </div>
                                               
-                        </div>
+                        </div> --}}
                         
-                        
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Tipo Profesional:</label>
-                            <div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Tipo Profesional:</label>
+                                <div>
+                                    
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" value="MEDICO" name="tipo_profesional" ng-model="filtro.tipo_profesional" ng-change="listaprofesionales()">
+                                        <span class="form-radio-sign">Personal Médico Atención</span>
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" value="NO_MEDICO" name="tipo_profesional" ng-model="filtro.tipo_profesional" ng-change="listaprofesionales()">
+                                        <span class="form-radio-sign">Personal No Medico</span>
+                                    </label>
+                                </div>
                                 
-                                <label class="form-radio-label">
-                                    <input class="form-radio-input" type="radio" value="MEDICO" name="tipo_profesional" ng-model="filtro.tipo_profesional">
-                                    <span class="form-radio-sign">Personal Médico Atención</span>
-                                </label>
-                                <label class="form-radio-label">
-                                    <input class="form-radio-input" type="radio" value="ENFERMERO_OBSTETRIZ" name="tipo_profesional" ng-model="filtro.tipo_profesional" >
-                                    <span class="form-radio-sign">Personal No Medico</span>
-                                </label>
                             </div>
-                            
                         </div>
-                    </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Estado de Impresión:</label>
+                                <div>
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" value="" name="estado_impresion" ng-model="filtro.estado_impresion" >
+                                        <span class="form-radio-sign">Todos</span>
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" value="0" name="estado_impresion" ng-model="filtro.estado_impresion" >
+                                        <span class="form-radio-sign">Pendientes</span>
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" value="1" name="estado_impresion" ng-model="filtro.estado_impresion" >
+                                        <span class="form-radio-sign">Impresos</span>
+                                    </label>
+                                </div>
+                                
+                            </div>
+                        </div>
                         
                         
                     </div>
@@ -131,7 +151,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div style="padding-top: 37px ;">
-                                    <button class="btn btn-success btn-block  btn-sm" ng-click="prepararImpresion();">
+                                    <button class="btn btn-success btn-block  btn-sm" ng-click="implementacionHis();">
                                         <i class="fa fa-print"></i>
                                         Imprimir
                                     </button>

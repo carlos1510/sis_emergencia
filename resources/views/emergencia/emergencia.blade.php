@@ -27,1116 +27,6 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Registrar Emergencia</h4>
-                </div>
-                <div class="card-body">
-                    <ul id="pills-tab" class="nav nav-pills nav-secondary" role="tablist">
-                        <li class="nav-item">
-                            <a id="pills-diagnostico-tab" class="nav-link active" aria-selected="true" aria-controls="pills-diagnostico" role="tab" href="#pills-diagnostico" data-toggle="pill">Atención/Diagnostico</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="pills-profile-tab" class="nav-link" aria-selected="false" aria-controls="pills-profile" role="tab" href="#pills-procedimientos" data-toggle="pill">Atención/Procedimientos </a>
-                        </li>
-                    </ul>
-                    <div id="pills-tabContent" class="tab-content mt-2 mb-3">
-                        <div id="pills-diagnostico" class="tab-pane fade show active" aria-labelledby="pills-diagnostico-tab" role="tabpanel">
-                            <div class="row ">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Cod. EESS: <span class="text-danger">(*)</span></label>
-                                        <div class="input-group">
-                                            <input class="form-control numero" type="text" aria-describedby="basic-addon1" aria-label="" ng-keypress="limpiarNombreEESS()"  placeholder="Codigo EESS" id="cod_2000" maxlength="9" ng-model="emergencia.cod_2000" name="cod_2000" required >
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-primary" title="Clic para buscar" ng-click="buscarEESS()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 2, 'fa fa-search': estado_bus_acomp != 2}" ></i></button>
-                                            </div>
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-default btn-border" title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarEstablecimientoModal"><i class="fas fa-ellipsis-h"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Establecimiento de Atención: <span class="text-danger">(*)</span></label>
-                                        <input type="text" class="form-control " id="nombre_est_emergenciatxt" ng-model="emergencia.nom_est" readonly name="nom_est" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Area de Atención: <span class="text-danger">(*)</span></label>
-                                        <select class="form-control has-error" style="width: 100% !important;" id="cmbArea_atencion" ng-model="emergencia.area_atencion" name="area_atencion" required>
-                                            <option value="">---</option>
-                                            <option value="AREA DE EMERGENCIA">AREA DE EMERGENCIA</option>
-                                            <option value="AREA DE EMERGENCIA COVID">AREA DE EMERGENCIA COVID</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Tipo de Profesional Responsable de la Atención: <span class="text-danger">(*)</span></label>
-                                        <select style="width: 100% !important;" ng-model="registro.tipo_profesional_atencion" id="cmbTipoProfesionalAtencion">
-                                            <option value="">---</option>
-                                            <option value="MEDICO">MÉDICO</option>
-                                            <option value="ENFERMERO">ENFERMERO</option>
-                                            <option value="OBSTETRA">OBSTETRA</option>
-                                            <option value="ODONTOLOGO">ODONTOLOGO</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="registro.tipo_profesional_atencion != ''">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Profesional de Atención: <span class="text-danger">(*)</span></label>
-                                        <input type="hidden" ng-model="emergencia.idprofesional"/>
-                                        <div class="input-group">
-                                            <input class="form-control numero" type="text" aria-describedby="basic-addon1" aria-label="" placeholder="Nro. Doc." id="nro_documento_profesional" ng-model="emergencia.nro_doc_profecional" required name="nro_doc_profecional" >
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-primary " title="Clic para buscar" ng-click="buscarPersonaProfesional()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 3, 'fa fa-search': estado_bus_acomp != 3}" ></i></button>
-                                            </div>
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-default btn-border " title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarProfesionalModal" ng-click="focoCampoBuscar('busqueda_texto_profesionaltxt')"><i class="fas fa-ellipsis-h"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>&nbsp;</label>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" aria-describedby="basic-addon1" id="nombre_profesional_emergencia_txt" ng-model="emergencia.nombre_profesional" required name="nombre_profesional" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Fecha Atención: <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date">
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                            <input class="form-control has-error" type="text" id="fecha_atenciontxt" autocomplete="off" placeholder="dd/mm/yyyy" name="fecha_atencion" ng-model="emergencia.fecha_atencion" readonly required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Hora: <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date">
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text"><i class="fa fa-clock"></i></span>
-                                            </div>
-                                            <input class="form-control has-error" type="text" autocomplete="off" placeholder="hh:ss" id="hora_atencion_txt" data-mask="99:99" ng-model="emergencia.hora_atencion" name="hora_atencion" ng-blur="validarHora('hora_atencion_txt')" required >
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text">24hrs.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Hist. Clinica:</label>
-                                        <input type="text" class="form-control text-uppercase numero2" ng-model="emergencia.hc" name="hc" maxlength="6" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Tipo de Seguro</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbIdFinanciador" ng-model="emergencia.idfinanciador" name="idfinanciador">
-                                            <option value="">---</option>
-                                            <option value="1">USUARIO</option>
-                                            <option value="2">S.I.S</option>
-                                            <option value="3">ESSALUD</option>
-                                            <option value="4">S.O.A.T</option>
-                                            <option value="5">SANIDAD F.A.P</option>
-                                            <option value="6">SANIDAD NAVAL</option>
-                                            <option value="7">SANIDAD EP</option>
-                                            <option value="8">SANIDAD PNP</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Tipo Doc.: <span class="text-danger">(*)</span></label>
-                                        <select class="form-control has-error" style="width: 100% !important;" id="cmbTipo_documento" ng-model="emergencia.tipo_documento" name="tipo_documento" disabled required>
-                                            <option value="">---</option>
-                                            <option value="1">DNI</option>
-                                            <option value="2">Carnet de Extranjería</option>
-                                            <option value="3">Pasaporte</option>
-                                            <option value="4">Documento de Identidad Extranjero</option>
-                                            <option value="5">S/ DOCUMENTO</option>
-                                            <option value="6">CNV</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Nro. Documento: <span class="text-danger">(*)</span></label>
-                                        <input type="text" class="form-control has-error" ng-model="emergencia.nro_documento" name="nro_documento" readonly required />
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Etnia:</label>
-                                        <select class="form-control" style="width: 100% !important;" id="cmbIdEtnia" ng-model="emergencia.idetnia" name="idetnia">
-                                            <option value="">---</option>
-                                            <option ng-repeat="item in lista_etnias" value="@{{ item.id }}">@{{ item.desetni }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Sexo: <span class="text-danger">(*)</span></label>
-                                        <select class="form-control has-error" style="width: 100% !important;" id="cmbSexo" ng-model="emergencia.sexo" name="sexo" required>
-                                            <option value="">---</option>
-                                            <option value="M">MASCULINO</option>
-                                            <option value="F">FEMENINO</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Apellido Paterno: <span class="text-danger">(*)</span></label>
-                                        <input type="text" class="form-control has-error text-uppercase" maxlength="45" ng-model="emergencia.apellido_paterno" ng-readonly="estado_encontrado == 2"  name="apellido_paterno" required/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Apellido Materno: <span class="text-danger">(*)</span></label>
-                                        <input type="text" class="form-control has-error text-uppercase" maxlength="45" ng-model="emergencia.apellido_materno" ng-readonly="estado_encontrado == 2"  name="apellido_materno" required/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Nombres: <span class="text-danger">(*)</span></label>
-                                        <input type="text" class="form-control has-error text-uppercase" maxlength="45" ng-model="emergencia.nombres" ng-readonly="estado_encontrado == 2" name="nombres" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Fecha Nacimiento: </label>
-                                        <div class="input-group date">
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                            <input class="form-control has-error" type="text" id="fecha_nacimientotxt" autocomplete="off" placeholder="dd/mm/yyyy" name="fecha_nacimiento" ng-model="emergencia.fecha_nacimiento" ng-change="calcularEdadFechaNacimiento()" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Tipo Edad: <span class="text-danger">(*)</span></label>
-                                        <select class="form-control text-uppercase has-error" style="width: 100% !important;" id="cmbTipo_edad" ng-model="emergencia.tipo_edad" name="tipo_edad" ng-change="cambiarTipoEdad()" required>
-                                            <option value="">---</option>
-                                            <option value="A">AÑO</option>
-                                            <option value="M">MES</option>
-                                            <option value="D">DIA</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Edad: <span class="text-danger">(*)</span></label>
-                                        <input type="text" class="form-control has-error numero2" maxlength="3" ng-model="emergencia.edad" name="edad" ng-blur="validarEdad()" required ng-readonly="emergencia.tipo_edad == ''" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>N° Celular:</label>
-                                        <input type="text" class="form-control numero2" name="nro_celular" maxlength="9" ng-model="emergencia.telefono" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Distrito Residencia:</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbIdUbigeo" ng-model="emergencia.idubigeo" name="idubigeo">
-                                            <option value="">---</option>
-                                            <option ng-repeat="item in lista_ubigeos" value="@{{ item.id_ubigueo_reniec }}">@{{ item.provincia }} / @{{ item.distrito }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-9">
-                                    <div class="form-group">
-                                        <label>Dirección:</label>
-                                        <input type="text" class="form-control text-uppercase" ng-model="emergencia.direccion" name="direccion"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Tipo Doc. Acomp.:</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbTipo_doc_acomp" ng-model="emergencia.tipo_doc_acomp" name="tipo_doc_acomp">
-                                            <option value="">---</option>
-                                            <option value="1">DNI</option>
-                                            <option value="2">Carnet de Extranjería</option>
-                                            <option value="3">Pasaporte</option>
-                                            <option value="4">Documento de Identidad Extranjero</option>
-                                            <option value="5">S/ DOCUMENTO</option>
-                                            <option value="6">CNV</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Nro. Doc. Acompañante</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control numero" ng-model="emergencia.nro_doc_acomp" id="nro_doc_acomp_txt" maxlength="10" ng-readonly="emergencia.tipo_doc_acomp == ''" name="nro_doc_acomp"/>
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-warning " ng-click="buscarPersonaAcompanante()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 1, 'fa fa-search': estado_bus_acomp != 1}" ></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label>Nombre del Acompañante:</label>
-                                        <input type="text" class="form-control  text-uppercase" maxlength="150" ng-model="emergencia.nombre_acomp" name="nombre_acomp" ng-readonly="estado_encontrado_acomp == 2" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Telefono Acomp.:</label>
-                                        <input type="text" class="form-control numero2" maxlength="9" ng-model="emergencia.telefono_acomp" name="telefono_acomp" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Presión Arterial: </label>
-                                        <input type="text" class="form-control numero2" id="presion_sistolica_txt" ng-model="emergencia.presion_sistolica" maxlength="3" ng-keyup="validarPresionSistolica(); calcularPresionArterialMedia()" />
-                                        <span class="text-danger" style="display: none;" id="presion_sistolica_error_span"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1">
-                                    <div class="form-group text-center">
-                                        <label>&nbsp;</label><br/>
-                                        <label class="text-center">/</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>&nbsp;</label>
-                                        <input type="text" class="form-control numero2" id="presion_diastolica_txt" ng-model="emergencia.presion_diastolica" maxlength="3" ng-keyup="validarPresionDiastolica(); calcularPresionArterialMedia()" />
-                                        <span class="text-danger" style="display: none;" id="presion_diastolica_txt_error_span"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Presión Arterial Media: </label>
-                                        <input type="text" class="form-control numero2" ng-model="emergencia.presion_arterial_media" readonly />
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Saturación Oxigeno: </label>
-                                        <input type="text" class="form-control numero2" ng-model="emergencia.saturacion_oxigeno" id="saturacion_oxigeno_txt" maxlength="2" ng-keyup="validarSaturacionOxigeno();" />
-                                        <span class="text-danger" style="display: none;" id="saturacion_oxigeno_error_span"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Frecuencia Cardiaca: </label>
-                                        <input type="text" class="form-control numero2" ng-model="emergencia.frecuencia_cardiaca" id="frecuencia_cardiaca_txt" maxlength="3" ng-keyup="validarFrecuenciaCardiaca();" />
-                                        <span class="text-danger" style="display: none;" id="frecuencia_cardiaca_error_span"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Frecuencia Respiratoria: </label>
-                                        <input type="text" class="form-control numero2" ng-model="emergencia.frecuencia_respiratoria" id="frecuencia_respiratoria_txt" maxlength="2" ng-keyup="validarFrecuenciaRespiratoria();" />
-                                        <span class="text-danger" style="display: none;" id="frecuencia_respiratoria_error_span"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Temperatura: </label>
-                                        <input type="text" class="form-control numero3" ng-model="emergencia.temperatura" id="temperatura_txt" maxlength="4" ng-keyup="validarTemperatura();" />
-                                        <span class="text-danger" style="display: none;" id="temperatura_error_span"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Motivo de Atención: <span class="text-danger">(*)</span></label>
-                                        <select class="form-control has-error" style="width: 100% !important;" id="cmbIdmotivo_atencion" ng-model="emergencia.idmotivo_atencion" name="idmotivo_atencion" required>
-                                            <option value="">---</option>
-                                            <option value="1">ACCIDENTE DE TRABAJO</option>
-                                            <option value="2">ACCIDENTE EN EL HOGAR</option>
-                                            <option value="3">ACCIDENTE DE TRANSITO</option>
-                                            <option value="4">AGRESION</option>
-                                            <option value="5">AUTOINFLINGIDO</option>
-                                            <option value="6">DESASTRE NATURAL</option>
-                                            <option value="8">ENVENAMIENTO</option>
-                                            <option value="10">ENFERMEDAD SUBITA</option>
-                                            <option value="11">ENFERMEDAD COMUN</option>
-                                            <option value="12">COVID-19</option>
-                                            <option value="13">ITU</option>
-                                            <option value="14">DIABETES</option>
-                                            <option value="15">OBITO</option>
-                                            <option value="16">DOLOR DE ORINA</option>
-                                            <option value="7">OTROS</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-9" ng-show="emergencia.idmotivo_atencion == 7">
-                                    <div class="form-group">
-                                        <label>Descripción del Motivo de Atención:</label>
-                                        <input type="text" class="form-control" placeholder="Máx. 255 carácteres" maxlength="255" ng-model="registro.motivo_atencion_descripcion">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Lugar de ocurrencia:</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbIdubigeo_lugar_ocurrencia" ng-model="emergencia.idubigeo_lugar_ocurrencia" name="idubigeo_lugar_ocurrencia">
-                                            <option value="">---</option>
-                                            <option ng-repeat="item in lista_ubigeos" value="@{{ item.id_ubigueo_reniec }}">@{{ item.provincia }} / @{{ item.distrito }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Tipo de Atención: <span class="text-danger">(*)</span></label>
-                                        <select class="form-control has-error" style="width: 100% !important;" id="cmbTipo_actividad" ng-model="emergencia.tipo_actividad" name="tipo_actividad" required>
-                                            <option value="">---</option>
-                                            <option value="U">Urgencia</option>
-                                            <option value="E">Emergencia</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Servicio: <span class="text-danger">(*)</span></label>
-                                        <div class="input-group">
-                                            <input class="form-control has-error" type="text" aria-describedby="basic-addon1" id="idupstxt" ng-model="emergencia.idups" name="idups" required readonly>
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-default btn-border btn-sm" type="button" title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarUpsEmergenciaModal" ng-click="focoCampoBuscar('busqueda_texto_upstxt')"><i class="fas fa-ellipsis-h"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-9">
-                                    <div class="form-group">
-                                        <label>&nbsp;</label>
-                                        <input type="text" class="form-control text-uppercase" id="descripcion_upstxt" ng-model="emergencia.descripcion_ups" name="descripcion_ups" required readonly />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table table-responsive">
-                                        <table class="table table-bordered table-head-bg-warning table-bordered-bd-warning">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">DX</th>
-                                                <th scope="col">SI-NO</th>
-                                                <th scope="col">Codigo CIE</th>
-                                                <th scope="col">Descripcion CIE</th>
-                                                <th scope="col">Tipo de Diagnóstico</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-center">Dx1 <span class="text-danger">(*)</span></td>
-                                                <td></td>
-                                                <td>
-                                                    <input type="text" class="form-control" size="10" ng-model="emergencia.codigo_dx1" id="codigo_dx1_txt" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClicked(1);" >
-                                                        <input type="text" class="form-control text-uppercase" id="descripcion_dx1_txt" placeholder="Escriba para buscar..." size="40" ng-model="emergencia.descripcion_dx1" ng-disabled="emergencia.dx1_si_no=='NO'" ng-keyup="fetchCIEX(1); limpiarActividadEmergenciaHIS(1)" ng-click="searchboxClicked($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValue($index, 1, $event); addDiagnosticoEmergenciaHis(1, result)" ng-repeat="result in searchResult_1" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="P" name="tipo_diagnostico_dx1" ng-model="emergencia.tipo_diagnostico_dx1" ng-change="modificarTipoDiagnosticoEmergenciaHIS(1)">
-                                                            <span class="form-radio-sign">P</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="D" name="tipo_diagnostico_dx1" ng-model="emergencia.tipo_diagnostico_dx1" ng-change="modificarTipoDiagnosticoEmergenciaHIS(1)">
-                                                            <span class="form-radio-sign">D</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="R" name="tipo_diagnostico_dx1" ng-model="emergencia.tipo_diagnostico_dx1" ng-change="modificarTipoDiagnosticoEmergenciaHIS(1)">
-                                                            <span class="form-radio-sign">R</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">Dx2</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="dx2_si_no" ng-model="emergencia.dx2_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="dx2_si_no" ng-model="emergencia.dx2_si_no" ng-change="emergencia.codigo_dx2=''; emergencia.descripcion_dx2=''; emergencia.tipo_diagnostico_dx2='P'; limpiarActividadEmergenciaHIS(2)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control" size="10" ng-model="emergencia.codigo_dx2" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClicked(2);" >
-                                                        <input type="text" class="form-control text-uppercase" placeholder="Escriba para buscar..." size="40" ng-model="emergencia.descripcion_dx2" ng-disabled="emergencia.dx2_si_no=='NO'" ng-keyup="fetchCIEX(2); limpiarActividadEmergenciaHIS(2)" ng-click="searchboxClicked($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValue($index, 2, $event); addDiagnosticoEmergenciaHis(2, result)" ng-repeat="result in searchResult_2" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="P" name="tipo_diagnostico_dx2" ng-model="emergencia.tipo_diagnostico_dx2" ng-change="modificarTipoDiagnosticoEmergenciaHIS(2)">
-                                                            <span class="form-radio-sign">P</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="D" name="tipo_diagnostico_dx2" ng-model="emergencia.tipo_diagnostico_dx2" ng-change="modificarTipoDiagnosticoEmergenciaHIS(2)">
-                                                            <span class="form-radio-sign">D</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="R" name="tipo_diagnostico_dx2" ng-model="emergencia.tipo_diagnostico_dx2" ng-change="modificarTipoDiagnosticoEmergenciaHIS(2)">
-                                                            <span class="form-radio-sign">R</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">Dx3</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="dx3_si_no" ng-model="emergencia.dx3_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="dx3_si_no" ng-model="emergencia.dx3_si_no" ng-change="emergencia.codigo_dx3=''; emergencia.descripcion_dx3=''; emergencia.tipo_diagnostico_dx3='P'; limpiarActividadEmergenciaHIS(3)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control" size="10" ng-model="emergencia.codigo_dx3" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClicked(3);" >
-                                                        <input type="text" class="form-control text-uppercase" placeholder="Escriba para buscar..." size="40" ng-model="emergencia.descripcion_dx3" ng-disabled="emergencia.dx3_si_no=='NO'" ng-keyup="fetchCIEX(3); limpiarActividadEmergenciaHIS(3)" ng-click="searchboxClicked($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValue($index, 3, $event); addDiagnosticoEmergenciaHis(3, result)" ng-repeat="result in searchResult_3" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="P" name="tipo_diagnostico_dx3" ng-model="emergencia.tipo_diagnostico_dx3" ng-change="modificarTipoDiagnosticoEmergenciaHIS(3)">
-                                                            <span class="form-radio-sign">P</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="D" name="tipo_diagnostico_dx3" ng-model="emergencia.tipo_diagnostico_dx3" ng-change="modificarTipoDiagnosticoEmergenciaHIS(3)">
-                                                            <span class="form-radio-sign">D</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="R" name="tipo_diagnostico_dx3" ng-model="emergencia.tipo_diagnostico_dx3" ng-change="modificarTipoDiagnosticoEmergenciaHIS(3)">
-                                                            <span class="form-radio-sign">R</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">Dx4</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="dx4_si_no" ng-model="emergencia.dx4_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="dx4_si_no" ng-model="emergencia.dx4_si_no" ng-change="emergencia.codigo_dx4=''; emergencia.descripcion_dx4=''; emergencia.tipo_diagnostico_dx4='P'; limpiarActividadEmergenciaHIS(4)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control" size="10" ng-model="emergencia.codigo_dx4" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClicked(4);" >
-                                                        <input type="text" class="form-control text-uppercase" placeholder="Escriba para buscar..." size="40" ng-model="emergencia.descripcion_dx4" ng-disabled="emergencia.dx4_si_no=='NO'" ng-keyup="fetchCIEX(4); limpiarActividadEmergenciaHIS(4)" ng-click="searchboxClicked($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValue($index, 4, $event); addDiagnosticoEmergenciaHis(4, result)" ng-repeat="result in searchResult_4" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="P" name="tipo_diagnostico_dx4" ng-model="emergencia.tipo_diagnostico_dx4" ng-change="modificarTipoDiagnosticoEmergenciaHIS(4)">
-                                                            <span class="form-radio-sign">P</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="D" name="tipo_diagnostico_dx4" ng-model="emergencia.tipo_diagnostico_dx4" ng-change="modificarTipoDiagnosticoEmergenciaHIS(4)">
-                                                            <span class="form-radio-sign">D</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="R" name="tipo_diagnostico_dx4" ng-model="emergencia.tipo_diagnostico_dx4" ng-change="modificarTipoDiagnosticoEmergenciaHIS(4)">
-                                                            <span class="form-radio-sign">R</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- ACTIVIDADES HIS PARA EL DIAGNOSTICO -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="panel panel-success">
-                                        <div class="panel-heading">Actividad HIS</div>
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Establecimiento:</label>
-                                                        <div>
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="N" name="condicion_establecimiento" ng-model="emergencia.condicion_establecimiento">
-                                                                <span class="form-radio-sign">N</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="C" name="condicion_establecimiento" ng-model="emergencia.condicion_establecimiento" >
-                                                                <span class="form-radio-sign">C</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="R" name="condicion_establecimiento" ng-model="emergencia.condicion_establecimiento" >
-                                                                <span class="form-radio-sign">R</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Servicio:</label>
-                                                        <div>
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="N" name="condicion_servicio" ng-model="emergencia.condicion_servicio">
-                                                                <span class="form-radio-sign">N</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="C" name="condicion_servicio" ng-model="emergencia.condicion_servicio" >
-                                                                <span class="form-radio-sign">C</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="R" name="condicion_servicio" ng-model="emergencia.condicion_servicio" >
-                                                                <span class="form-radio-sign">R</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-hover">
-                                                    <thead>
-                                                    <tr>
-                                                        <th rowspan="2">#</th>
-                                                        <th class="text-center" rowspan="2">Descripción CIE</th>
-                                                        <th class="text-center" colspan="3">Tipo de Diagnostico</th>
-                                                        <th class="text-center" colspan="3">Lab</th>
-                                                        <th class="text-center" rowspan="2">Codigo Ciex</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="text-center">P</th>
-                                                        <th class="text-center">D</th>
-                                                        <th class="text-center">R</th>
-                                                        <th class="text-center">1°</th>
-                                                        <th class="text-center">2°</th>
-                                                        <th class="text-center">3°</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr ng-repeat="item in emergencia.detalle_his">
-                                                        <td>@{{ $index + 1 }}</td>
-                                                        <td>@{{ item.descripcion_cie }}</td>
-                                                        <td class="text-center">@{{ item.tipo_diagnostico=='P'?item.tipo_diagnostico:'' }}</td>
-                                                        <td class="text-center">@{{ item.tipo_diagnostico=='D'?item.tipo_diagnostico:'' }}</td>
-                                                        <td class="text-center">@{{ item.tipo_diagnostico=='R'?item.tipo_diagnostico:'' }}</td>
-                                                        <td>
-                                                            <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab1" maxlength="6"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab2" maxlength="6"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab3" maxlength="6"/>
-                                                        </td>
-                                                        <td class="text-center">@{{ item.codigo_cie }}</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="pills-procedimientos" class="tab-pane fade" aria-labelledby="pills-procedimientos-tab" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Tipo de Profesional Responsable del Procedimiento: <span class="text-danger">(*)</span></label>
-                                        <select style="width: 100% !important;" ng-model="registro.tipo_profesional_procedimiento" id="cmbTipoProfesionalProcedimiento">
-                                            <option value="">---</option>
-                                            <option value="MEDICO">MÉDICO</option>
-                                            <option value="ENFERMERO">ENFERMERO</option>
-                                            <option value="OBSTETRA">OBSTETRA</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3" ng-show="registro.tipo_profesional_procedimiento != ''">
-                                    <div class="form-group">
-                                        <label>Profesional Responsable del Procedimiento: <span class="text-danger">(*)</span></label>
-                                        <input type="hidden" ng-model="emergencia.idprofesional_no_medico"/>
-                                        <div class="input-group">
-                                            <input class="form-control numero" type="text" aria-describedby="basic-addon1" aria-label="" placeholder="Nro. Doc." id="nro_doc_profecional_no_medico" ng-model="emergencia.nro_doc_profecional_no_medico" required name="nro_doc_profecional_no_medico" >
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-primary" title="Clic para buscar" ng-click="buscarPersonaProfesionalNoMedico()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 3, 'fa fa-search': estado_bus_acomp != 3}" ></i></button>
-                                            </div>
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-default btn-border" title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarProfesionalNoMedicoModal" ng-click="focoCampoBuscar('busqueda_texto_profesionalNoMedicotxt');"><i class="fas fa-ellipsis-h"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5" ng-show="registro.tipo_profesional_procedimiento != ''">
-                                    <div class="form-group">
-                                        <label>&nbsp;</label>
-                                        <div class="input-group">
-                                            <input class="form-control " type="text" aria-describedby="basic-addon1" id="nombre_profesional_no_medico_emergencia_txt" ng-model="emergencia.nombre_profesional_no_medico" required name="nombre_profesional_no_medico" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table table-responsive">
-                                        <table class="table table-bordered table-head-bg-info table-bordered-bd-info">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">PROC.</th>
-                                                <th scope="col">SI-NO</th>
-                                                <th scope="col">Codigo CIE</th>
-                                                <th scope="col">Descripcion CIE</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-center">Proc1</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="proc1_si_no" ng-model="emergencia.proc1_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="proc1_si_no" ng-model="emergencia.proc1_si_no" ng-change="emergencia.codigo_proc_1=''; emergencia.descripcion_proc_1=''; limpiarActividadEmergenciaHIS(5)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control " size="10" ng-model="emergencia.codigo_proc_1" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClickedProc(1);" >
-                                                        <input type="text" class="form-control text-uppercase" size="40" ng-model="emergencia.descripcion_proc_1" placeholder="Escriba para buscar..." ng-disabled="emergencia.proc1_si_no=='NO'" ng-keyup="fetchCIEXProc(1); limpiarActividadEmergenciaHIS(5)" ng-click="searchboxClickedProc($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValueProc($index, 1, $event); addDiagnosticoEmergenciaHis(5, result)" ng-repeat="result in searchResult_Proc_1" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">Proc2</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="proc2_si_no" ng-model="emergencia.proc2_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="proc2_si_no" ng-model="emergencia.proc2_si_no" ng-change="emergencia.codigo_proc_2=''; emergencia.descripcion_proc_2=''; limpiarActividadEmergenciaHIS(6)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control " size="10" ng-model="emergencia.codigo_proc_2" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClickedProc(2);" >
-                                                        <input type="text" class="form-control text-uppercase" size="40" ng-model="emergencia.descripcion_proc_2" placeholder="Escriba para buscar..." ng-disabled="emergencia.proc2_si_no=='NO'" ng-keyup="fetchCIEXProc(2); limpiarActividadEmergenciaHIS(6)" ng-click="searchboxClickedProc($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValueProc($index, 2, $event); addDiagnosticoEmergenciaHis(6, result)" ng-repeat="result in searchResult_Proc_2" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">Proc3</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="proc3_si_no" ng-model="emergencia.proc3_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="proc3_si_no" ng-model="emergencia.proc3_si_no" ng-change="emergencia.codigo_proc_3=''; emergencia.descripcion_proc_3=''; limpiarActividadEmergenciaHIS(7)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control " size="10" ng-model="emergencia.codigo_proc_3" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClickedProc(3);" >
-                                                        <input type="text" class="form-control text-uppercase" size="40" ng-model="emergencia.descripcion_proc_3" placeholder="Escriba para buscar..." ng-disabled="emergencia.proc3_si_no=='NO'" ng-keyup="fetchCIEXProc(3); limpiarActividadEmergenciaHIS(7)" ng-click="searchboxClickedProc($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValueProc($index, 3, $event); addDiagnosticoEmergenciaHis(7, result)" ng-repeat="result in searchResult_Proc_3" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">Proc4</td>
-                                                <td>
-                                                    <center>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="SI" name="proc4_si_no" ng-model="emergencia.proc4_si_no">
-                                                            <span class="form-radio-sign">SI</span>
-                                                        </label>
-                                                        <label class="form-radio-label">
-                                                            <input class="form-radio-input" type="radio" value="NO" name="proc4_si_no" ng-model="emergencia.proc4_si_no" ng-change="emergencia.codigo_proc_4=''; emergencia.descripcion_proc_4=''; limpiarActividadEmergenciaHIS(8)">
-                                                            <span class="form-radio-sign">NO</span>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control " size="10" ng-model="emergencia.codigo_proc_4" readonly />
-                                                </td>
-                                                <td>
-                                                    <div ng-click="containerClickedProc(4);" >
-                                                        <input type="text" class="form-control text-uppercase" size="40" ng-model="emergencia.descripcion_proc_4" placeholder="Escriba para buscar..." ng-disabled="emergencia.proc4_si_no=='NO'" ng-keyup="fetchCIEXProc(4); limpiarActividadEmergenciaHIS(8)" ng-click="searchboxClickedProc($event);" />
-                                                        <ul class="list-group" >
-                                                            <li class="list-group-item" ng-click="setValueProc($index, 4, $event); addDiagnosticoEmergenciaHis(8, result)" ng-repeat="result in searchResult_Proc_4" >
-                                                                @{{ result.codigo_cie }} - @{{ result.descripcion_cie }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table table-responsive">
-                                        <table class="table table-bordered table-head-bg-success table-bordered-bd-success">
-                                            <thead>
-                                            <tr>
-                                                <th colspan="4" class="text-center">Entrega de Medicamentos<button type="button" class="btn btn-sm btn-default pull-right" data-toggle="modal" data-target="#seleccionarMedicamentoModal" ng-click="focoCampoBuscar('buscar_medicamento_txt')"><i class="fa fa-plus"></i> Agregar Medicamento</button></th>
-                                            </tr>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Descripcion Medicamento</th>
-                                                <th>Cantidad</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <tr ng-repeat="item in emergencia.detalle_medicamento" >
-                                                <td>@{{ $index+1 }}</td>
-                                                <td>@{{ item.descripcion }}</td>
-                                                <td>
-                                                    <input type="text" class="form-control form-control-sm numero_med" maxlength="5" ng-model="item.cantidad" />
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-danger" title="Quitar" ng-click="quitarMedicamento($index)"><i class="fa fa-times"></i></button>
-                                                </td>
-                                                <script>
-                                                    $(function () {
-                                                        $(".numero_med").numeric({decimal: ".", negative: false, scale: 3});
-                                                    });
-                                                </script>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Tratamiento Adicional:</label>
-                                        <div>
-                                            <label class="form-radio-label">
-                                                <input class="form-radio-input" type="radio" value="SI" name="tratamiento_adicional" ng-model="emergencia.tratamiento_adicional">
-                                                <span class="form-radio-sign">SI</span>
-                                            </label>
-                                            <label class="form-radio-label">
-                                                <input class="form-radio-input" type="radio" value="NO" name="tratamiento_adicional" ng-model="emergencia.tratamiento_adicional" >
-                                                <span class="form-radio-sign">NO</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3" ng-show="emergencia.tratamiento_adicional == 'SI'">
-                                    <div class="form-group">
-                                        <label>N° de días de Tratamiento:</label>
-                                        <input type="text" class="form-control numero" ng-model="emergencia.nro_dia_tratamiento" name="nro_dia_tratamiento" maxlength="2" >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Condición de Salida:</label>
-                                        <select class="form-control" style="width: 100% !important;" id="cmbIdCondicion_salida" ng-model="emergencia.idcondicion_salida" name="idcondicion_salida">
-                                            <option value="">---</option>
-                                            <option value="1">ALTA MÉDICA</option>
-                                            <option value="2">ALTA VOLUNTARIA</option>
-                                            <option value="3">TRANSFERIADO / REFERIDO</option>
-                                            <option value="4">FUGADO</option>
-                                            <option value="5">FALLECIDO</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Fecha de Salida:</label>
-                                        <div class="input-group date">
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                            <input class="form-control " type="text" id="fecha_salidatxt" autocomplete="off" placeholder="dd/mm/yyyy" ng-model="emergencia.fecha_salida" name="fecha_salida" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Hora de Salida: </label>
-                                        <div class="input-group date">
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text"><i class="fa fa-clock"></i></span>
-                                            </div>
-                                            <input class="form-control  has-error-2" type="text" autocomplete="off" placeholder="hh:ss" id="hora_salida_txt" data-mask="99:99" ng-model="emergencia.hora_salida" name="hora_salida" ng-blur="validarHoraSalida('hora_salida_txt')" >
-                                            <div class="input-group-prepend">
-                                                <span  class="input-group-text">24hrs.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Destino:</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbIdDestino" ng-model="emergencia.iddestino" ng-change="iniciarCombo()" name="iddestino">
-                                            <option value="">---</option>
-                                            <option value="1">DOMICILIO</option>
-                                            <option value="2">HOSPITALIZACION</option>
-                                            <option value="3">TRANSFERIADO / REFERIDO</option>
-                                            <option value="4">FUGA</option>
-                                            <option value="5">DEFUNCION</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4" ng-show="emergencia.iddestino == 3">
-                                    <div class="form-group">
-                                        <label>Establecimiento:</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbCod_2000_referencia" ng-model="emergencia.cod_2000_referencia" name="cod_2000_referencia">
-                                            <option value="">---</option>
-                                            <option ng-repeat="item in lista_establecimientos" value="@{{ item.codigo_unico }}">@{{ item.nom_red }} / @{{ item.codigo_unico }} - @{{ item.nombre_establecimiento }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5" ng-show="emergencia.iddestino == 2">
-                                    <div class="form-group">
-                                        <label>Servicio:</label>
-                                        <select class="form-control " style="width: 100% !important;" id="cmbIdUps_hospitalizacion" ng-model="emergencia.idups_hospitalizacion" name="idups_hospitalizacion" >
-                                            <option value="">---</option>
-                                            <option ng-repeat="item in ups_hospitalizacion" value="@{{ item.codups }}">@{{ item.codups }} - @{{ item.desupsesp }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- ACTIVIDADES HIS PARA LOS PROCEDIMIENTOS -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="panel panel-success">
-                                        <div class="panel-heading">Actividad HIS</div>
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Establecimiento:</label>
-                                                        <div>
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="N" name="condicion_establecimiento" ng-model="emergencia.condicion_establecimiento">
-                                                                <span class="form-radio-sign">N</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="C" name="condicion_establecimiento" ng-model="emergencia.condicion_establecimiento" >
-                                                                <span class="form-radio-sign">C</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="R" name="condicion_establecimiento" ng-model="emergencia.condicion_establecimiento" >
-                                                                <span class="form-radio-sign">R</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Servicio:</label>
-                                                        <div>
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="N" name="condicion_servicio" ng-model="emergencia.condicion_servicio">
-                                                                <span class="form-radio-sign">N</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="C" name="condicion_servicio" ng-model="emergencia.condicion_servicio" >
-                                                                <span class="form-radio-sign">C</span>
-                                                            </label><br />
-                                                            <label class="form-radio-label">
-                                                                <input class="form-radio-input" type="radio" value="R" name="condicion_servicio" ng-model="emergencia.condicion_servicio" >
-                                                                <span class="form-radio-sign">R</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-hover">
-                                                    <thead>
-                                                    <tr>
-                                                        <th rowspan="2">#</th>
-                                                        <th class="text-center" rowspan="2">Descripción CIE</th>
-                                                        <th class="text-center" colspan="3">Tipo de Diagnostico</th>
-                                                        <th class="text-center" colspan="3">Lab</th>
-                                                        <th class="text-center" rowspan="2">Codigo Ciex</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="text-center">P</th>
-                                                        <th class="text-center">D</th>
-                                                        <th class="text-center">R</th>
-                                                        <th class="text-center">1°</th>
-                                                        <th class="text-center">2°</th>
-                                                        <th class="text-center">3°</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr ng-repeat="item in emergencia.detalle_his">
-                                                        <td>@{{ $index + 1 }}</td>
-                                                        <td>@{{ item.descripcion_cie }}</td>
-                                                        <td class="text-center">@{{ item.tipo_diagnostico=='P'?item.tipo_diagnostico:'' }}</td>
-                                                        <td class="text-center">@{{ item.tipo_diagnostico=='D'?item.tipo_diagnostico:'' }}</td>
-                                                        <td class="text-center">@{{ item.tipo_diagnostico=='R'?item.tipo_diagnostico:'' }}</td>
-                                                        <td>
-                                                            <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab1" maxlength="6"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab2" maxlength="6"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab3" maxlength="6"/>
-                                                        </td>
-                                                        <td class="text-center">@{{ item.codigo_cie }}</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Salir</button>
-                        <button type="button" class="btn btn-primary" ng-show="estado_paso === 1" ng-click="pasarAlProcedimiento()"><i class="fas fa-angle-right"></i> Paso 2: Procedimientos</button>
-                        <button type="button" class="btn btn-default" ng-show="estado_paso === 2" ng-click="regresarAlDiagnostico()"><i class="fas fa-angle-left"></i> Regresar al Diagnostico</button>
-                        <button type="button" class="btn btn-primary" ng-show="estado_paso === 2"><i class="fas fa-save"></i> Guardar y Salir</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row" ng-show="estado_registro == 1">
         <div class="col-lg-12">
             <div class="card">
@@ -1230,7 +120,7 @@
                                <div class="form-group">
                                    <label>Cod. EESS: <span class="text-danger">(*)</span></label>
                                    <div class="input-group">
-                                       <input class="form-control form-control-sm numero" type="text" aria-describedby="basic-addon1" aria-label="" ng-keypress="limpiarNombreEESS()"  placeholder="Codigo EESS" id="cod_2000" maxlength="9" ng-model="emergencia.cod_2000" name="cod_2000" required >
+                                       <input class="form-control  numero" type="text" aria-describedby="basic-addon1" aria-label="" ng-keypress="limpiarNombreEESS()"  placeholder="Codigo EESS" id="cod_2000" maxlength="9" ng-model="emergencia.cod_2000" name="cod_2000" required >
                                        <div class="input-group-prepend">
                                            <button class="btn btn-primary btn-sm" title="Clic para buscar" ng-click="buscarEESS()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 2, 'fa fa-search': estado_bus_acomp != 2}" ></i></button>
                                        </div>
@@ -1243,7 +133,7 @@
                            <div class="col-lg-6">
                                <div class="form-group">
                                    <label>Establecimiento de Atención: <span class="text-danger">(*)</span></label>
-                                   <input type="text" class="form-control form-control-sm" id="nombre_est_emergenciatxt" ng-model="emergencia.nom_est" readonly name="nom_est" required />
+                                   <input type="text" class="form-control " id="nombre_est_emergenciatxt" ng-model="emergencia.nom_est" readonly name="nom_est" required />
                                </div>
                            </div>
                        </div>
@@ -1251,7 +141,7 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Area de Atención: <span class="text-danger">(*)</span></label>
-                                   <select class="form-control form-control-sm has-error" style="width: 100% !important;" id="cmbArea_atencion" ng-model="emergencia.area_atencion" name="area_atencion" required>
+                                   <select class="form-control has-error" style="width: 100% !important;" id="cmbArea_atencion" ng-model="emergencia.area_atencion" name="area_atencion" required>
                                        <option value="">---</option>
                                        <option value="AREA DE EMERGENCIA">AREA DE EMERGENCIA</option>
                                        <option value="AREA DE EMERGENCIA COVID">AREA DE EMERGENCIA COVID</option>
@@ -1276,7 +166,7 @@
                                    <label>Profesional de Atención: <span class="text-danger">(*)</span></label>
                                    <input type="hidden" ng-model="emergencia.idprofesional"/>
                                    <div class="input-group">
-                                       <input class="form-control form-control-sm numero" type="text" aria-describedby="basic-addon1" aria-label="" placeholder="Nro. Doc." id="nro_documento_profesional" ng-model="emergencia.nro_doc_profecional" required name="nro_doc_profecional" >
+                                       <input class="form-control numero" type="text" aria-describedby="basic-addon1" aria-label="" placeholder="Nro. Doc." id="nro_documento_profesional" ng-model="emergencia.nro_doc_profecional" required name="nro_doc_profecional" >
                                        <div class="input-group-prepend">
                                            <button class="btn btn-primary btn-sm" title="Clic para buscar" ng-click="buscarPersonaProfesional()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 3, 'fa fa-search': estado_bus_acomp != 3}" ></i></button>
                                        </div>
@@ -1290,7 +180,7 @@
                                <div class="form-group">
                                    <label>&nbsp;</label>
                                    <div class="input-group">
-                                       <input class="form-control form-control-sm" type="text" aria-describedby="basic-addon1" id="nombre_profesional_emergencia_txt" ng-model="emergencia.nombre_profesional" required name="nombre_profesional" readonly>
+                                       <input class="form-control " type="text" aria-describedby="basic-addon1" id="nombre_profesional_emergencia_txt" ng-model="emergencia.nombre_profesional" required name="nombre_profesional" readonly>
                                    </div>
                                </div>
                            </div>
@@ -1303,7 +193,7 @@
                                        <div class="input-group-prepend">
                                            <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
                                        </div>
-                                       <input class="form-control form-control-sm has-error" type="text" id="fecha_atenciontxt" autocomplete="off" placeholder="dd/mm/yyyy" name="fecha_atencion" ng-model="emergencia.fecha_atencion" readonly required>
+                                       <input class="form-control has-error" type="text" id="fecha_atenciontxt" autocomplete="off" placeholder="dd/mm/yyyy" name="fecha_atencion" ng-model="emergencia.fecha_atencion" readonly required>
                                    </div>
                                </div>
                            </div>
@@ -1314,7 +204,7 @@
                                        <div class="input-group-prepend">
                                            <span  class="input-group-text"><i class="fa fa-clock"></i></span>
                                        </div>
-                                       <input class="form-control form-control-sm has-error" type="text" autocomplete="off" placeholder="hh:ss" id="hora_atencion_txt" data-mask="99:99" ng-model="emergencia.hora_atencion" name="hora_atencion" ng-blur="validarHora('hora_atencion_txt')" required >
+                                       <input class="form-control has-error" type="text" autocomplete="off" placeholder="hh:ss" id="hora_atencion_txt" data-mask="99:99" ng-model="emergencia.hora_atencion" name="hora_atencion" ng-blur="validarHora('hora_atencion_txt')" required >
                                        <div class="input-group-prepend">
                                            <span  class="input-group-text">24hrs.</span>
                                        </div>
@@ -1324,13 +214,13 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Hist. Clinica:</label>
-                                   <input type="text" class="form-control form-control-sm text-uppercase numero2" ng-model="emergencia.hc" name="hc" maxlength="6" />
+                                   <input type="text" class="form-control text-uppercase numero2" ng-model="emergencia.hc" name="hc" maxlength="6" />
                                </div>
                            </div>
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Tipo de Seguro</label>
-                                   <select class="form-control form-control-sm" style="width: 100% !important;" id="cmbIdFinanciador" ng-model="emergencia.idfinanciador" name="idfinanciador">
+                                   <select class="form-control form-control-lg" style="width: 100% !important;" id="cmbIdFinanciador" ng-model="emergencia.idfinanciador" name="idfinanciador">
                                        <option value="">---</option>
                                        <option value="1">USUARIO</option>
                                        <option value="2">S.I.S</option>
@@ -1348,7 +238,7 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Tipo Doc.: <span class="text-danger">(*)</span></label>
-                                   <select class="form-control form-control-sm has-error" style="width: 100% !important;" id="cmbTipo_documento" ng-model="emergencia.tipo_documento" name="tipo_documento" disabled required>
+                                   <select class="form-control has-error" style="width: 100% !important;" id="cmbTipo_documento" ng-model="emergencia.tipo_documento" name="tipo_documento" disabled required>
                                        <option value="">---</option>
                                        <option value="1">DNI</option>
                                        <option value="2">Carnet de Extranjería</option>
@@ -1362,13 +252,13 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Nro. Documento: <span class="text-danger">(*)</span></label>
-                                   <input type="text" class="form-control form-control-sm has-error" ng-model="emergencia.nro_documento" name="nro_documento" readonly required />
+                                   <input type="text" class="form-control has-error" ng-model="emergencia.nro_documento" name="nro_documento" readonly required />
                                </div>
                            </div>
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Etnia:</label>
-                                   <select class="form-control form-control-sm" style="width: 100% !important;" id="cmbIdEtnia" ng-model="emergencia.idetnia" name="idetnia">
+                                   <select class="form-control" style="width: 100% !important;" id="cmbIdEtnia" ng-model="emergencia.idetnia" name="idetnia">
                                        <option value="">---</option>
                                        <option ng-repeat="item in lista_etnias" value="@{{ item.id }}">@{{ item.desetni }}</option>
                                    </select>
@@ -1377,7 +267,7 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Sexo: <span class="text-danger">(*)</span></label>
-                                   <select class="form-control form-control-sm has-error" style="width: 100% !important;" id="cmbSexo" ng-model="emergencia.sexo" name="sexo" required>
+                                   <select class="form-control form-control-lg has-error" style="width: 100% !important;" id="cmbSexo" ng-model="emergencia.sexo" name="sexo" required>
                                        <option value="">---</option>
                                        <option value="M">MASCULINO</option>
                                        <option value="F">FEMENINO</option>
@@ -1389,19 +279,19 @@
                            <div class="col-lg-4">
                                <div class="form-group">
                                    <label>Apellido Paterno: <span class="text-danger">(*)</span></label>
-                                   <input type="text" class="form-control form-control-sm has-error text-uppercase" maxlength="45" ng-model="emergencia.apellido_paterno" ng-readonly="estado_encontrado == 2"  name="apellido_paterno" required/>
+                                   <input type="text" class="form-control has-error text-uppercase" maxlength="45" ng-model="emergencia.apellido_paterno" ng-readonly="estado_encontrado == 2"  name="apellido_paterno" required/>
                                </div>
                            </div>
                            <div class="col-lg-4">
                                <div class="form-group">
                                    <label>Apellido Materno: <span class="text-danger">(*)</span></label>
-                                   <input type="text" class="form-control form-control-sm has-error text-uppercase" maxlength="45" ng-model="emergencia.apellido_materno" ng-readonly="estado_encontrado == 2"  name="apellido_materno" required/>
+                                   <input type="text" class="form-control has-error text-uppercase" maxlength="45" ng-model="emergencia.apellido_materno" ng-readonly="estado_encontrado == 2"  name="apellido_materno" required/>
                                </div>
                            </div>
                            <div class="col-lg-4">
                                <div class="form-group">
                                    <label>Nombres: <span class="text-danger">(*)</span></label>
-                                   <input type="text" class="form-control form-control-sm has-error text-uppercase" maxlength="45" ng-model="emergencia.nombres" ng-readonly="estado_encontrado == 2" name="nombres" required />
+                                   <input type="text" class="form-control has-error text-uppercase" maxlength="45" ng-model="emergencia.nombres" ng-readonly="estado_encontrado == 2" name="nombres" required />
                                </div>
                            </div>
                        </div>
@@ -1413,14 +303,14 @@
                                        <div class="input-group-prepend">
                                            <span  class="input-group-text"><i class="fa fa-calendar"></i></span>
                                        </div>
-                                       <input class="form-control form-control-sm has-error" type="text" id="fecha_nacimientotxt" autocomplete="off" placeholder="dd/mm/yyyy" name="fecha_nacimiento" ng-model="emergencia.fecha_nacimiento" ng-change="calcularEdadFechaNacimiento()" readonly>
+                                       <input class="form-control has-error" type="text" id="fecha_nacimientotxt" autocomplete="off" placeholder="dd/mm/yyyy" name="fecha_nacimiento" ng-model="emergencia.fecha_nacimiento" ng-change="calcularEdadFechaNacimiento()" readonly>
                                    </div>
                                </div>
                            </div>
                            <div class="col-lg-2">
                                <div class="form-group">
                                    <label>Tipo Edad: <span class="text-danger">(*)</span></label>
-                                   <select class="form-control form-control-sm text-uppercase has-error" style="width: 100% !important;" id="cmbTipo_edad" ng-model="emergencia.tipo_edad" name="tipo_edad" ng-change="cambiarTipoEdad()" required>
+                                   <select class="form-control text-uppercase has-error" style="width: 100% !important;" id="cmbTipo_edad" ng-model="emergencia.tipo_edad" name="tipo_edad" ng-change="cambiarTipoEdad()" required>
                                        <option value="">---</option>
                                        <option value="A">AÑO</option>
                                        <option value="M">MES</option>
@@ -1431,13 +321,13 @@
                            <div class="col-lg-2">
                                <div class="form-group">
                                    <label>Edad: <span class="text-danger">(*)</span></label>
-                                   <input type="text" class="form-control form-control-sm has-error numero2" maxlength="3" ng-model="emergencia.edad" name="edad" ng-blur="validarEdad()" required ng-readonly="emergencia.tipo_edad == ''" />
+                                   <input type="text" class="form-control has-error numero2" maxlength="3" ng-model="emergencia.edad" name="edad" ng-blur="validarEdad()" required ng-readonly="emergencia.tipo_edad == ''" />
                                </div>
                            </div>
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>N° Celular:</label>
-                                   <input type="text" class="form-control form-control-sm numero2" name="nro_celular" maxlength="9" ng-model="emergencia.telefono" />
+                                   <input type="text" class="form-control numero2" name="nro_celular" maxlength="9" ng-model="emergencia.telefono" />
                                </div>
                            </div>
                        </div>
@@ -1445,7 +335,7 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Distrito Residencia:</label>
-                                   <select class="form-control form-control-sm" style="width: 100% !important;" id="cmbIdUbigeo" ng-model="emergencia.idubigeo" name="idubigeo">
+                                   <select class="form-control form-control-lg" style="width: 100% !important;" id="cmbIdUbigeo" ng-model="emergencia.idubigeo" name="idubigeo">
                                        <option value="">---</option>
                                        <option ng-repeat="item in lista_ubigeos" value="@{{ item.id_ubigueo_reniec }}">@{{ item.provincia }} / @{{ item.distrito }}</option>
                                    </select>
@@ -1454,7 +344,7 @@
                            <div class="col-lg-9">
                                <div class="form-group">
                                    <label>Dirección:</label>
-                                   <input type="text" class="form-control form-control-sm text-uppercase" ng-model="emergencia.direccion" name="direccion"/>
+                                   <input type="text" class="form-control  text-uppercase" ng-model="emergencia.direccion" name="direccion"/>
                                </div>
                            </div>
                        </div>
@@ -1462,7 +352,7 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Tipo Doc. Acomp.:</label>
-                                   <select class="form-control form-control-sm" style="width: 100% !important;" id="cmbTipo_doc_acomp" ng-model="emergencia.tipo_doc_acomp" name="tipo_doc_acomp">
+                                   <select class="form-control form-control-lg" style="width: 100% !important;" id="cmbTipo_doc_acomp" ng-model="emergencia.tipo_doc_acomp" name="tipo_doc_acomp">
                                        <option value="">---</option>
                                        <option value="1">DNI</option>
                                        <option value="2">Carnet de Extranjería</option>
@@ -1477,7 +367,7 @@
                                <div class="form-group">
                                    <label>Nro. Doc. Acompañante</label>
                                    <div class="input-group">
-                                       <input type="text" class="form-control form-control-sm numero" ng-model="emergencia.nro_doc_acomp" id="nro_doc_acomp_txt" maxlength="10" ng-readonly="emergencia.tipo_doc_acomp == ''" name="nro_doc_acomp"/>
+                                       <input type="text" class="form-control  numero" ng-model="emergencia.nro_doc_acomp" id="nro_doc_acomp_txt" maxlength="10" ng-readonly="emergencia.tipo_doc_acomp == ''" name="nro_doc_acomp"/>
                                        <div class="input-group-prepend">
                                            <button class="btn btn-warning btn-sm" ng-click="buscarPersonaAcompanante()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 1, 'fa fa-search': estado_bus_acomp != 1}" ></i></button>
                                        </div>
@@ -1487,13 +377,13 @@
                            <div class="col-lg-5">
                                <div class="form-group">
                                    <label>Nombre del Acompañante:</label>
-                                   <input type="text" class="form-control form-control-sm text-uppercase" maxlength="150" ng-model="emergencia.nombre_acomp" name="nombre_acomp" ng-readonly="estado_encontrado_acomp == 2" />
+                                   <input type="text" class="form-control  text-uppercase" maxlength="150" ng-model="emergencia.nombre_acomp" name="nombre_acomp" ng-readonly="estado_encontrado_acomp == 2" />
                                </div>
                            </div>
                            <div class="col-lg-2">
                                <div class="form-group">
                                    <label>Telefono Acomp.:</label>
-                                   <input type="text" class="form-control form-control-sm numero2" maxlength="9" ng-model="emergencia.telefono_acomp" name="telefono_acomp" />
+                                   <input type="text" class="form-control  numero2" maxlength="9" ng-model="emergencia.telefono_acomp" name="telefono_acomp" />
                                </div>
                            </div>
                        </div>
@@ -1501,7 +391,7 @@
                            <div class="col-lg-2">
                                <div class="form-group">
                                    <label>Presión Arterial: </label>
-                                   <input type="text" class="form-control form-control-sm numero2" id="presion_sistolica_txt" ng-model="emergencia.presion_sistolica" maxlength="3" ng-keyup="validarPresionSistolica(); calcularPresionArterialMedia()" />
+                                   <input type="text" class="form-control  numero2" id="presion_sistolica_txt" ng-model="emergencia.presion_sistolica" maxlength="3" ng-keyup="validarPresionSistolica(); calcularPresionArterialMedia()" />
                                    <span class="text-danger" style="display: none;" id="presion_sistolica_error_span"></span>
                                </div>
                            </div>
@@ -1514,52 +404,64 @@
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>&nbsp;</label>
-                                   <input type="text" class="form-control form-control-sm numero2" id="presion_diastolica_txt" ng-model="emergencia.presion_diastolica" maxlength="3" ng-keyup="validarPresionDiastolica(); calcularPresionArterialMedia()" />
+                                   <input type="text" class="form-control  numero2" id="presion_diastolica_txt" ng-model="emergencia.presion_diastolica" maxlength="3" ng-keyup="validarPresionDiastolica(); calcularPresionArterialMedia()" />
                                    <span class="text-danger" style="display: none;" id="presion_diastolica_txt_error_span"></span>
                                </div>
                            </div>
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Presión Arterial Media: </label>
-                                   <input type="text" class="form-control form-control-sm numero2" ng-model="emergencia.presion_arterial_media" readonly />
+                                   <input type="text" class="form-control  numero2" ng-model="emergencia.presion_arterial_media" readonly />
                                </div>
                            </div>
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Saturación Oxigeno: </label>
-                                   <input type="text" class="form-control form-control-sm numero2" ng-model="emergencia.saturacion_oxigeno" id="saturacion_oxigeno_txt" maxlength="2" ng-keyup="validarSaturacionOxigeno();" />
+                                   <input type="text" class="form-control numero2" ng-model="emergencia.saturacion_oxigeno" id="saturacion_oxigeno_txt" maxlength="2" ng-keyup="validarSaturacionOxigeno();" />
                                    <span class="text-danger" style="display: none;" id="saturacion_oxigeno_error_span"></span>
                                </div>
                            </div>
                        </div>
                        <div class="row">
-                           <div class="col-lg-3">
+                           <div class="col-lg-2 col-sm-12">
                                <div class="form-group">
                                    <label>Frecuencia Cardiaca: </label>
-                                   <input type="text" class="form-control form-control-sm numero2" ng-model="emergencia.frecuencia_cardiaca" id="frecuencia_cardiaca_txt" maxlength="3" ng-keyup="validarFrecuenciaCardiaca();" />
+                                   <input type="text" class="form-control  numero2" ng-model="emergencia.frecuencia_cardiaca" id="frecuencia_cardiaca_txt" maxlength="3" ng-keyup="validarFrecuenciaCardiaca();" />
                                    <span class="text-danger" style="display: none;" id="frecuencia_cardiaca_error_span"></span>
                                </div>
                            </div>
-                           <div class="col-lg-3">
+                           <div class="col-lg-2 col-sm-12">
                                <div class="form-group">
                                    <label>Frecuencia Respiratoria: </label>
-                                   <input type="text" class="form-control form-control-sm numero2" ng-model="emergencia.frecuencia_respiratoria" id="frecuencia_respiratoria_txt" maxlength="2" ng-keyup="validarFrecuenciaRespiratoria();" />
+                                   <input type="text" class="form-control numero2" ng-model="emergencia.frecuencia_respiratoria" id="frecuencia_respiratoria_txt" maxlength="2" ng-keyup="validarFrecuenciaRespiratoria();" />
                                    <span class="text-danger" style="display: none;" id="frecuencia_respiratoria_error_span"></span>
                                </div>
                            </div>
-                           <div class="col-lg-3">
+                           <div class="col-lg-2 col-sm-12">
                                <div class="form-group">
                                    <label>Temperatura: </label>
-                                   <input type="text" class="form-control form-control-sm numero3" ng-model="emergencia.temperatura" id="temperatura_txt" maxlength="4" ng-keyup="validarTemperatura();" />
+                                   <input type="text" class="form-control numero3" ng-model="emergencia.temperatura" id="temperatura_txt" maxlength="4" ng-keyup="validarTemperatura();" />
                                    <span class="text-danger" style="display: none;" id="temperatura_error_span"></span>
                                </div>
                            </div>
+                           <div class="col-lg-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Peso: </label>
+                                    <input type="text" class="form-control numero3" ng-model="emergencia.peso" id="peso_txt"  />
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Talla: </label>
+                                    <input type="text" class="form-control numero3" ng-model="emergencia.talla" id="talla_txt" />
+                                </div>
+                            </div>
                        </div>
                        <div class="row">
                            <div class="col-lg-3">
                                <div class="form-group">
                                    <label>Motivo de Atención: <span class="text-danger">(*)</span></label>
-                                   <select class="form-control form-control-sm has-error" style="width: 100% !important;" id="cmbIdmotivo_atencion" ng-model="emergencia.idmotivo_atencion" name="idmotivo_atencion" required>
+                                   <select class="form-control form-control-lg has-error" style="width: 100% !important;" id="cmbIdmotivo_atencion" ng-model="emergencia.idmotivo_atencion" name="idmotivo_atencion" required>
                                        <option value="">---</option>
                                        <option value="1">ACCIDENTE DE TRABAJO</option>
                                        <option value="2">ACCIDENTE EN EL HOGAR</option>
@@ -1582,7 +484,7 @@
                            <div class="col-lg-9" ng-show="emergencia.idmotivo_atencion == 7">
                                <div class="form-group">
                                     <label>Descripción del Motivo de Atención:</label>
-                                   <input type="text" class="form-control form-control-sm" placeholder="Máx. 255 carácteres" maxlength="255" ng-model="registro.motivo_atencion_descripcion">
+                                   <input type="text" class="form-control" placeholder="Máx. 255 carácteres" maxlength="255" ng-model="registro.motivo_atencion_descripcion">
                                </div>
                            </div>
                        </div>
@@ -1590,7 +492,7 @@
                            <div class="col-lg-4">
                                <div class="form-group">
                                    <label>Lugar de ocurrencia:</label>
-                                   <select class="form-control form-control-sm" style="width: 100% !important;" id="cmbIdubigeo_lugar_ocurrencia" ng-model="emergencia.idubigeo_lugar_ocurrencia" name="idubigeo_lugar_ocurrencia">
+                                   <select class="form-control " style="width: 100% !important;" id="cmbIdubigeo_lugar_ocurrencia" ng-model="emergencia.idubigeo_lugar_ocurrencia" name="idubigeo_lugar_ocurrencia">
                                        <option value="">---</option>
                                        <option ng-repeat="item in lista_ubigeos" value="@{{ item.id_ubigueo_reniec }}">@{{ item.provincia }} / @{{ item.distrito }}</option>
                                    </select>
@@ -1599,7 +501,7 @@
                            <div class="col-lg-4">
                                <div class="form-group">
                                    <label>Tipo de Atención: <span class="text-danger">(*)</span></label>
-                                   <select class="form-control form-control-sm has-error" style="width: 100% !important;" id="cmbTipo_actividad" ng-model="emergencia.tipo_actividad" name="tipo_actividad" required>
+                                   <select class="form-control has-error" style="width: 100% !important;" id="cmbTipo_actividad" ng-model="emergencia.tipo_actividad" name="tipo_actividad" required>
                                        <option value="">---</option>
                                        <option value="U">Urgencia</option>
                                        <option value="E">Emergencia</option>
@@ -1612,7 +514,7 @@
                                <div class="form-group">
                                    <label>Servicio: <span class="text-danger">(*)</span></label>
                                    <div class="input-group">
-                                       <input class="form-control form-control-sm has-error" type="text" aria-describedby="basic-addon1" id="idupstxt" ng-model="emergencia.idups" name="idups" required readonly>
+                                       <input class="form-control has-error" type="text" aria-describedby="basic-addon1" id="idupstxt" ng-model="emergencia.idups" name="idups" required readonly>
                                        <div class="input-group-prepend">
                                            <button class="btn btn-default btn-border btn-sm" type="button" title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarUpsEmergenciaModal" ng-click="focoCampoBuscar('busqueda_texto_upstxt')"><i class="fas fa-ellipsis-h"></i></button>
                                        </div>
@@ -1622,7 +524,7 @@
                            <div class="col-lg-9">
                                <div class="form-group">
                                    <label>&nbsp;</label>
-                                   <input type="text" class="form-control form-control-sm text-uppercase" id="descripcion_upstxt" ng-model="emergencia.descripcion_ups" name="descripcion_ups" required readonly />
+                                   <input type="text" class="form-control text-uppercase" id="descripcion_upstxt" ng-model="emergencia.descripcion_ups" name="descripcion_ups" required readonly />
                                </div>
                            </div>
                        </div>
@@ -1811,7 +713,7 @@
                                </div>
                            </div>
                        </div>
-----
+
                        <div class="row">
                            <div class="col-lg-4">
                                <div class="form-group">
@@ -1829,12 +731,12 @@
                                    <label>Profesional Responsable del Procedimiento: <span class="text-danger">(*)</span></label>
                                    <input type="hidden" ng-model="emergencia.idprofesional_no_medico"/>
                                    <div class="input-group">
-                                       <input class="form-control form-control-sm numero" type="text" aria-describedby="basic-addon1" aria-label="" placeholder="Nro. Doc." id="nro_doc_profecional_no_medico" ng-model="emergencia.nro_doc_profecional_no_medico" required name="nro_doc_profecional_no_medico" >
+                                       <input class="form-control numero" type="text" aria-describedby="basic-addon1" aria-label="" placeholder="Nro. Doc." id="nro_doc_profecional_no_medico" ng-model="emergencia.nro_doc_profecional_no_medico" required name="nro_doc_profecional_no_medico" >
                                        <div class="input-group-prepend">
-                                           <button class="btn btn-primary btn-sm" title="Clic para buscar" ng-click="buscarPersonaProfesionalNoMedico()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 3, 'fa fa-search': estado_bus_acomp != 3}" ></i></button>
+                                           <button class="btn btn-primary " title="Clic para buscar" ng-click="buscarPersonaProfesionalNoMedico()" type="button"><i ng-class="{'fa fa-spinner fa-spin': estado_bus_acomp == 3, 'fa fa-search': estado_bus_acomp != 3}" ></i></button>
                                        </div>
                                        <div class="input-group-prepend">
-                                           <button class="btn btn-default btn-border btn-sm" title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarProfesionalNoMedicoModal" ng-click="focoCampoBuscar('busqueda_texto_profesionalNoMedicotxt');"><i class="fas fa-ellipsis-h"></i></button>
+                                           <button class="btn btn-default btn-border " title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarProfesionalNoMedicoModal" ng-click="focoCampoBuscar('busqueda_texto_profesionalNoMedicotxt');"><i class="fas fa-ellipsis-h"></i></button>
                                        </div>
                                    </div>
                                </div>
@@ -1843,11 +745,31 @@
                                <div class="form-group">
                                    <label>&nbsp;</label>
                                    <div class="input-group">
-                                       <input class="form-control form-control-sm" type="text" aria-describedby="basic-addon1" id="nombre_profesional_no_medico_emergencia_txt" ng-model="emergencia.nombre_profesional_no_medico" required name="nombre_profesional_no_medico" readonly>
+                                       <input class="form-control " type="text" aria-describedby="basic-addon1" id="nombre_profesional_no_medico_emergencia_txt" ng-model="emergencia.nombre_profesional_no_medico" required name="nombre_profesional_no_medico" readonly>
                                    </div>
                                </div>
                            </div>
                        </div>
+
+                       <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Servicio Procedimiento: <span class="text-danger">(*)</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control form-control-sm has-error" type="text" aria-describedby="basic-addon1" aria-label="" ng-model="emergencia.idups_procedimiento" required readonly>
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-default btn-border btn-sm" type="button" title="Clic para Seleccionar" type="button" data-toggle="modal" data-target="#seleccionarUpsProcedimientoModal" ng-click="focoCampoBuscar('busqueda_texto_upsProctxt')"><i class="fas fa-ellipsis-h"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <input type="text" class="form-control form-control-sm text-uppercase" id="descripcion_upsProcedimiento_txt" ng-model="emergencia.descripcion_ups_proc" required readonly />
+                                </div>
+                            </div>
+                        </div>
 
                        <div class="row">
                            <div class="col-lg-12">
@@ -2114,11 +1036,11 @@
                                </div>
                            </div>
                        </div>
-                       -----
+                       
                        <div class="row">
                            <div class="col-lg-12">
                                <div class="panel panel-success">
-                                   <div class="panel-heading">Actividad HIS</div>
+                                   <div class="panel-heading">Actividad HIS Personal Médico</div>
                                    <div class="panel-body">
                                        <div class="row">
                                            <div class="col-lg-3">
@@ -2188,6 +1110,50 @@
                                                         <td class="text-center">@{{ item.tipo_diagnostico=='P'?item.tipo_diagnostico:'' }}</td>
                                                         <td class="text-center">@{{ item.tipo_diagnostico=='D'?item.tipo_diagnostico:'' }}</td>
                                                         <td class="text-center">@{{ item.tipo_diagnostico=='R'?item.tipo_diagnostico:'' }}</td>
+                                                        <td class="text-center">@{{ item.lab1 }}</td>
+                                                        <td class="text-center">@{{ item.lab2 }}</td>
+                                                        <td class="text-center">@{{ item.lab3 }}</td>
+                                                        <td class="text-center">@{{ item.codigo_cie }}</td>
+                                                    </tr>
+                                               </tbody>
+                                           </table>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">Actividad HIS Personal No Médico</div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2">#</th>
+                                                        <th class="text-center" rowspan="2">Descripción CIE</th>
+                                                        <th class="text-center" colspan="3">Tipo de Diagnostico</th>
+                                                        <th class="text-center" colspan="3">Lab</th>
+                                                        <th class="text-center" rowspan="2">Codigo Ciex</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center">P</th>
+                                                        <th class="text-center">D</th>
+                                                        <th class="text-center">R</th>
+                                                        <th class="text-center">1°</th>
+                                                        <th class="text-center">2°</th>
+                                                        <th class="text-center">3°</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in emergencia.detalle_his_nm">
+                                                        <td>@{{ $index + 1 }}</td>
+                                                        <td>@{{ item.descripcion_cie }}</td>
+                                                        <td class="text-center">@{{ item.tipo_diagnostico=='P'?item.tipo_diagnostico:'' }}</td>
+                                                        <td class="text-center">@{{ item.tipo_diagnostico=='D'?item.tipo_diagnostico:'' }}</td>
+                                                        <td class="text-center">@{{ item.tipo_diagnostico=='R'?item.tipo_diagnostico:'' }}</td>
                                                         <td>
                                                             <input type="text" size="5" ng-show="item.item > 4" ng-model="item.lab1" maxlength="6"/>
                                                         </td>
@@ -2199,13 +1165,13 @@
                                                         </td>
                                                         <td class="text-center">@{{ item.codigo_cie }}</td>
                                                     </tr>
-                                               </tbody>
-                                           </table>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                    </div>
                    <div class="card-footer">
                        <center>
@@ -2401,6 +1367,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
@@ -2414,6 +1381,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row ">
                             <div class="col-lg-3">
                                 <div class="form-group">
@@ -2449,6 +1417,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
@@ -2482,6 +1451,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
@@ -2523,6 +1493,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
@@ -2543,6 +1514,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="form-group">
@@ -2613,6 +1585,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
@@ -2636,6 +1609,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
@@ -3355,6 +2329,59 @@
                                 <tbody>
                                     <tr ng-repeat="item in ups_emergencia | filter: busqueda_texto_emerg">
                                         <td><button type="button" class="btn btn-info btn-sm" ng-click="seleccionUpsEmergencia(item)" title="Seleccionar UPS"><i class="fas fa-check"></i></button></td>
+                                        <td>@{{ item.codups }}</td>
+                                        <td>@{{ item.desupsesp }}</td>
+                                        <td>@{{ item.desups }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer no-bd">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="seleccionarUpsProcedimientoModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header no-bd">
+                    <h5 class="modal-title">
+                        <span class="fw-mediumbold">
+                        Seleccionar UPS </span>
+                        <span class="fw-light">
+                            Emergencia Procedimiento
+                        </span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" ng-show="ups_emergencia.length > 0">
+                        <div class="col-lg-12">
+                           <div class="form-group">
+                               <label>Busqueda:</label>
+                               <input type="text" class="form-control text-uppercase" id="busqueda_texto_upsProctxt" ng-model="busqueda_texto_ups_proc" name="busqueda_texto_ups_proc" placeholder="Ingrese Texto a buscar" />
+                           </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive mt-2" style="height: 300px;">
+                            <table class="table table-bordered table-hover text-nowrap">
+                                <thead>
+                                    <th></th>
+                                    <th>Codigo UPS</th>
+                                    <th>Descripción UPS</th>
+                                    <th>Servicio</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in ups_emergencia_proc | filter: busqueda_texto_ups_proc">
+                                        <td><button type="button" class="btn btn-info btn-sm" ng-click="seleccionUpsEmergenciaProc(item)" title="Seleccionar UPS"><i class="fas fa-check"></i></button></td>
                                         <td>@{{ item.codups }}</td>
                                         <td>@{{ item.desupsesp }}</td>
                                         <td>@{{ item.desups }}</td>
