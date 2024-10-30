@@ -56,8 +56,12 @@ class AccesorioRepository
     }
 
     public function listaUpsByEmergenciaHospitalizacion($params){
-        $sql = "SELECT id_ups AS codups, descripcion_ups AS desupsesp, '".$params->servicio_descripcion."' AS desups FROM maestro_his_ups ".($params->servicio_descripcion=='EMERGENCIA'?" WHERE emergencia=1 and estado_emergencia=1":($params->servicio_descripcion == 'HOSPITALIZACIÓN'?" WHERE hospitalizacion=1":""));
-        //$sql = "SELECT codups, desups, desupsesp FROM ups_emergencia_hospitalizacion WHERE desups='$params->servicio_descripcion' AND estado=1";
+        if($params->servicio_descripcion != 'PROCEDIMIENTO'){
+            $sql = "SELECT id_ups AS codups, descripcion_ups AS desupsesp, '".$params->servicio_descripcion."' AS desups FROM maestro_his_ups ".($params->servicio_descripcion=='EMERGENCIA'?" WHERE emergencia=1 and estado_emergencia=1":($params->servicio_descripcion == 'HOSPITALIZACIÓN'?" WHERE hospitalizacion=1":""));
+        } else {
+            $sql = "SELECT id_ups AS codups, descripcion_ups AS desupsesp, '".$params->servicio_descripcion."' AS desups FROM maestro_his_ups where id_ups IN ('301203','301204','303203','302303')";
+        }
+        
         return DB::select($sql);
     }
 

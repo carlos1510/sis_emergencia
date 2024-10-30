@@ -164,12 +164,12 @@
                             </a>
                         </li>-->
 
-                        <li @if(Session::get('menu_primario')=='his') class="nav-item active" @else class="nav-item" @endif>
+                        {{-- <li @if(Session::get('menu_primario')=='his') class="nav-item active" @else class="nav-item" @endif>
                             <a href="{{ url('atencion_his') }}">
                                 <i class="fas fa-file-invoice"></i>
                                 <p>Atención HIS</p>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li  @if(Session::get('menu_primario')=='reportes')class="nav-item submenu active" @else class="nav-item" @endif>
                             <a data-toggle="collapse" href="#planin" @if(Session::get('menu_primario')=='reportes')class="collapse" @else class="" @endif >

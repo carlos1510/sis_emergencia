@@ -311,20 +311,19 @@ class ProfesionalRepository
     }
 
     public function listarProfesionalByTipo($params){
-        if($params->tipo_profesional == 'ENFERMERO_OBSTETRIZ'){
-            $sql = "SELECT mp.id_personal, u.cod_2000, mp.id_tipo_documento, mp.numero_documento,  mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.nombres_personal,
-                mp.id_profesion, mhp.descripcion AS nom_profesion
-                FROM usuario u INNER JOIN maestro_personal mp ON u.idprofesional=mp.id_personal
-                INNER JOIN maestro_his_profesion mhp ON mp.id_profesion=mhp.id_profesion WHERE mhp.id_profesion IN (29, 35, 23, 48) ".
-                (isset($params->cod_2000)?($params->cod_2000!=""?" AND u.cod_2000='$params->cod_2000' ":" AND u.cod_2000='".Session::get('cod_2000')."'"):" AND u.cod_2000='".Session::get('cod_2000')."'");
-        }else{
-            if($params->tipo_profesional == 'MEDICO'){
-                $sql = "SELECT  e.idprofesional, mp.nombres_personal, mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.numero_documento, mp.id_profesion, mhp.descripcion AS nom_profesion
-                    FROM emergencia e INNER JOIN maestro_personal mp ON e.idprofesional=mp.id_personal INNER JOIN maestro_his_profesion mhp ON mp.id_profesion=mhp.id_profesion
-                    WHERE mhp.id_profesion='01' ".(isset($params->cod_2000)?($params->cod_2000!=""?" AND e.cod_2000='$params->cod_2000' ":" AND e.cod_2000='".Session::get('cod_2000')."'"):" AND e.cod_2000='".Session::get('cod_2000')."'")."
-                    GROUP BY mp.id_personal, mp.nombres_personal, mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.numero_documento, mp.id_profesion, mhp.descripcion";
-            }
+        if($params->tipo_profesional == 'MEDICO'){
+            $sql = "SELECT distinct e.idprofesional, mp.nombres_personal, mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.numero_documento, mp.id_profesion, mhp.descripcion AS nom_profesion
+                FROM emergencia e INNER JOIN maestro_personal mp ON e.idprofesional=mp.id_personal INNER JOIN maestro_his_profesion mhp ON mp.id_profesion=mhp.id_profesion
+                WHERE mhp.id_profesion='01' ".(isset($params->cod_2000)?($params->cod_2000!=""?" AND e.cod_2000='$params->cod_2000' ":" AND e.cod_2000='".Session::get('cod_2000')."'"):" AND e.cod_2000='".Session::get('cod_2000')."'")."
+                GROUP BY e.idprofesional, mp.nombres_personal, mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.numero_documento, mp.id_profesion, mhp.descripcion";
+        }else {
+            $sql = "SELECT distinct e.idprofesional_no_medico as idprofesional, mp.nombres_personal, mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.numero_documento, mp.id_profesion, mhp.descripcion AS nom_profesion
+                FROM emergencia e INNER JOIN maestro_personal mp ON e.idprofesional_no_medico=mp.id_personal INNER JOIN maestro_his_profesion mhp ON mp.id_profesion=mhp.id_profesion
+                 WHERE mhp.id_profesion IN (29, 35, 23, 48) ".
+                (isset($params->cod_2000)?($params->cod_2000!=""?" AND e.cod_2000='$params->cod_2000' ":" AND e.cod_2000='".Session::get('cod_2000')."'"):" AND e.cod_2000='".Session::get('cod_2000')."'").
+                " GROUP BY e.idprofesional_no_medico, mp.nombres_personal, mp.apellido_paterno_personal, mp.apellido_materno_personal, mp.numero_documento, mp.id_profesion, mhp.descripcion";
         }
+
         return DB::select($sql);
     }
     
